@@ -38,14 +38,16 @@ const { isOpen } = useNavigationDrawler();
         <v-divider></v-divider>
         <v-list density="compact" nav>
           <v-list-item
+            :to="{ name: 'home' }"
             prepend-icon="mdi-home-city"
-            title="Home"
-            value="home"
+            title="Домик"
+            value="Домашняя"
           ></v-list-item>
           <v-list-item
+            :to="{ name: 'task' }"
             prepend-icon="mdi-file-tree"
-            title="My Account"
-            value="account"
+            title="Задачи"
+            value="Таски"
           ></v-list-item>
         </v-list>
       </v-navigation-drawer>
@@ -60,7 +62,6 @@ const { isOpen } = useNavigationDrawler();
 
       <v-main>
         <v-container>
-          <h1>Main Content</h1>
           <slot></slot>
         </v-container>
       </v-main>
