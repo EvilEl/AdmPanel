@@ -1,8 +1,22 @@
 name: Check
 on: pull_request
+
 jobs:
- test:
-   runs-on: ubuntu-latest
+  test:
+    name: Run Test
+    runs-on: ubuntu-latest
+
     steps:
-     run: pnpm ci
-     run: pnpm lint:fix
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4.1.0
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint project
+        run: pnpm lint:fix
