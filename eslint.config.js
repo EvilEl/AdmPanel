@@ -7,14 +7,6 @@ import pluginVue from "eslint-plugin-vue";
 export default [
   {
     files: ["**/*.{js,mjs,cjs,ts,vue}"],
-    rules: {
-      "@typescript-eslint/ban-ts-comment": [
-        "error",
-        {
-          "ts-ignore": false, // Разрешить @ts-ignore с описанием
-        },
-      ],
-    },
   },
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
@@ -23,5 +15,17 @@ export default [
   {
     files: ["**/*.vue"],
     languageOptions: { parserOptions: { parser: tseslint.parser } },
+  },
+  {
+    rules: {
+      "@typescript-eslint/ban-ts-comment": [
+        "error",
+        {
+          "ts-ignore": false, // Разрешить @ts-ignore с описанием
+        },
+      ],
+      "vue/multi-word-component-names": "off",
+      "@typescript-eslint/no-empty-object-type": "off",
+    },
   },
 ];
