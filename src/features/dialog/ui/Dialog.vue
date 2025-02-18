@@ -35,7 +35,6 @@ const isDialog = defineModel<boolean>("isDialog", {
     :width="options.width"
   >
     <template v-slot:default="{ isActive }">
-      {{ console.log(options) }}
       <v-card :title="options.title">
         <slot name="default">
           <v-card-text>

@@ -9,7 +9,13 @@ import {
 } from "vuetify/components";
 import { useTaskPayload } from "./api";
 
-const { title, description, submit } = useTaskPayload();
+const {
+  title,
+  description,
+  errorMessageTitle,
+  errorMessageDescription,
+  submit,
+} = useTaskPayload();
 </script>
 
 <template>
@@ -17,11 +23,10 @@ const { title, description, submit } = useTaskPayload();
     <v-container>
       <v-row>
         <v-col width="100%" md="100%">
-          {{ console.log(title) }}
           <v-text-field
-            v-model="title.value.value"
+            v-model="title"
             :counter="100"
-            :error-messages="title.errorMessage.value"
+            :error-messages="errorMessageTitle"
             label="Заголовок"
             required
           ></v-text-field>
@@ -29,9 +34,9 @@ const { title, description, submit } = useTaskPayload();
 
         <v-col md="100%">
           <v-text-field
-            v-model="description.value.value"
+            v-model="description"
             :counter="100"
-            :error-messages="description.errorMessage.value"
+            :error-messages="errorMessageDescription"
             label="Описание"
             required
           ></v-text-field>

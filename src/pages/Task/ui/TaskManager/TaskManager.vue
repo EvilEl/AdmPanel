@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import draggable from "vuedraggable";
 import { VBtn } from "vuetify/components";
 import Dialog from "@/features/dialog";
 import useTask from "@/entities/task/api/useTask";
 import TaskPayload from "../TaskPayload";
-
-const isDialog = ref(false);
+import { useTaskManagerDialog } from "@/pages/Task/model";
 
 const { inProgressTasks, completedTasks } = useTask();
+const { isDialog, openDialog } = useTaskManagerDialog();
 
 //@TODO добавить логику добавление удаление смена позиции тасок
 </script>
@@ -19,7 +18,7 @@ const { inProgressTasks, completedTasks } = useTask();
       class="task-manager__add"
       prepend-icon="mdi-plus-circle"
       variant="text"
-      @click.stop="isDialog = !isDialog"
+      @click.stop="openDialog"
     >
       Задача
     </v-btn>
