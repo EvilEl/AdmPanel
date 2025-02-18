@@ -7,5 +7,9 @@
 ## Поднять сервер
 
 - [] REST FULL API для задач GET,PUT,POST,DELETE,PATCH
+  
+
+## Добавить sentry
+  - [] 
 
 ## Сделать Докер образ
