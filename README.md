@@ -7,12 +7,12 @@
 ## Поднять сервер
 
 - [] REST FULL API для задач GET,PUT,POST,DELETE,PATCH
-  
 
 ## Добавить sentry
-  - []
-  - https://docs.sentry.io/platforms/javascript/guides/vue/
-  - https://timeweb.cloud/tutorials/servers/sentry-monitoring-i-otslezhivanie-oshibok
-  - https://habr.com/ru/articles/508686/
+
+- [x]
+- https://docs.sentry.io/platforms/javascript/guides/vue/
+- https://timeweb.cloud/tutorials/servers/sentry-monitoring-i-otslezhivanie-oshibok
+- https://habr.com/ru/articles/508686/
 
 ## Сделать Докер образ
