@@ -1,6 +1,6 @@
 import { computed, ref } from "vue";
 import { createGlobalState } from "@vueuse/core";
-import { ITask, ITaskPayload, StatusTask } from "../model";
+import { ITask, ITaskPayload, StatusTask, TaskDraggableAction } from "../model";
 
 const useTask = createGlobalState(() => {
   const tasks = ref<ITask[]>([
@@ -38,11 +38,22 @@ const useTask = createGlobalState(() => {
     tasks.value.push(newTask);
   }
 
+  function moveTask(e: TaskDraggableAction) {
+    if ("added" in e) {
+      console.log(e.added);
+    } else if ("moved" in e) {
+      console.log(e.moved);
+    } else {
+      console.log(e.removed);
+    }
+  }
+
   return {
     tasks,
     inProgressTasks,
     completedTasks,
     addTask,
+    moveTask,
   };
 });
 

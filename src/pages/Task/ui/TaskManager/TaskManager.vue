@@ -6,7 +6,7 @@ import useTask from "@/entities/task/api/useTask";
 import TaskPayload from "../TaskPayload";
 import { useTaskManagerDialog } from "@/pages/Task/model";
 
-const { inProgressTasks, completedTasks } = useTask();
+const { inProgressTasks, completedTasks, moveTask } = useTask();
 const { isDialog, openDialog } = useTaskManagerDialog();
 
 //@TODO добавить логику добавление удаление смена позиции тасок
@@ -34,6 +34,7 @@ const { isDialog, openDialog } = useTaskManagerDialog();
         class="list-group"
         item-key="id"
         group="task"
+        @change="moveTask"
       >
         >
         <template #item="{ element }">
@@ -47,6 +48,7 @@ const { isDialog, openDialog } = useTaskManagerDialog();
         class="list-group"
         item-key="id"
         group="task"
+        @change="moveTask"
       >
         <template #item="{ element }">
           <div class="list-group-item">{{ element.title }}</div>
