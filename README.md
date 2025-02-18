@@ -10,6 +10,6 @@
   
 
 ## Добавить sentry
-  - [] 
+  - []  https://docs.sentry.io/platforms/javascript/guides/vue/
 
 ## Сделать Докер образ
