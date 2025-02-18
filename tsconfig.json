@@ -25,6 +25,7 @@
     "types": ["node", "vite/client"]
   },
   "include": [
+    "env.d.ts",
     "mock/*.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
