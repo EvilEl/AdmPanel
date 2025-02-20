@@ -1,6 +1,3 @@
-.task-manager {
-}
-
 .task-manager__add {
   margin-bottom: 1rem;
 }
@@ -10,7 +7,11 @@
   gap: 2rem;
 }
 
-.list-group {
+.task-manager__draggable {
+  flex: 1;
+}
+
+.task-manager__list-group {
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;
@@ -23,9 +24,7 @@
   border-radius: 0.25rem;
   width: 100%;
   background-color: #fff;
-}
-.list-group {
-  min-height: 20px;
+  min-height: 40px;
 }
 
 .list-group-item:first-child {

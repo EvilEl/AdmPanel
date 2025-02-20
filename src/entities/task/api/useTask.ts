@@ -1,4 +1,4 @@
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { createGlobalState } from "@vueuse/core";
 import { ITask, ITaskPayload, StatusTask, TaskDraggableAction } from "../model";
 
@@ -18,27 +18,40 @@ const useTask = createGlobalState(() => {
     },
   ]);
 
-  // function removeTask() {}
+  const inProgressTasks = ref<ITask[]>([]);
+  const completedTasks = ref<ITask[]>([]);
 
-  const inProgressTasks = computed(() =>
-    tasks.value.filter((task) => task.status === StatusTask["inProgress"])
+  watch(
+    tasks,
+    () => {
+      inProgressTasks.value = tasks.value.filter(
+        (task) => task.status === StatusTask["inProgress"]
+      );
+      completedTasks.value = tasks.value.filter(
+        (task) => task.status === StatusTask["completed"]
+      );
+    },
+    { immediate: true }
   );
-  const completedTasks = computed(() =>
-    tasks.value.filter((task) => task.status === StatusTask["completed"])
+
+  const countTask = computed<number>(() => tasks.value.length);
+  const countCompletedTasks = computed<number>(
+    () => completedTasks.value.length
+  );
+  const countInProgressTasks = computed<number>(
+    () => inProgressTasks.value.length
   );
 
   function addTask(data: ITaskPayload): void {
-    //@TODO добавить api
-    // const newTask = app.post() data
     const newTask = {
       ...data,
       id: Math.random() * 100 + 1000,
       status: StatusTask["inProgress"],
     };
-    tasks.value.push(newTask);
+    inProgressTasks.value.push(newTask);
   }
 
-  function moveTask(e: TaskDraggableAction) {
+  function moveTask(e: TaskDraggableAction): void {
     if ("added" in e) {
       console.log(e.added);
     } else if ("moved" in e) {
@@ -52,6 +65,9 @@ const useTask = createGlobalState(() => {
     tasks,
     inProgressTasks,
     completedTasks,
+    countCompletedTasks,
+    countInProgressTasks,
+    countTask,
     addTask,
     moveTask,
   };
