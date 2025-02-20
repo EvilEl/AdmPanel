@@ -20,3 +20,6 @@ jobs:
 
       - name: Lint project
         run: pnpm lint:fix
+
+      - name: Vitest project
+        run: pnpm test
