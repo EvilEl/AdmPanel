@@ -31,7 +31,7 @@ const useTask = createGlobalState(() => {
         (task) => task.status === StatusTask["completed"]
       );
     },
-    { immediate: true }
+    { immediate: true, deep: true }
   );
 
   const countTask = computed<number>(() => tasks.value.length);
