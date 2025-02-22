@@ -1,4 +1,5 @@
+import { ITask } from "@/entities/task/model";
+
 export interface ITaskPayloadProps {
-  title: string;
-  description: string;
+  task?: ITask;
 }

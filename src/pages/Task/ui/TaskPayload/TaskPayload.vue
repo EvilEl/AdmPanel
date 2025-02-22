@@ -10,13 +10,19 @@ import {
 import { useTaskPayload } from "./model";
 import { ITaskPayloadProps } from "./types";
 
-const props = defineProps<ITaskPayloadProps>();
+const props = withDefaults(defineProps<ITaskPayloadProps>(), {
+  task: () => ({
+    id: '',
+    title: '',
+    description: '',
+    status: 'completed'
+  })
+});
 
 const {
   title,
   description,
-  errorMessageTitle,
-  errorMessageDescription,
+  errors,
   submit,
 } = useTaskPayload(props);
 </script>
@@ -32,7 +38,7 @@ const {
           <v-text-field
             v-model="title"
             :counter="100"
-            :error-messages="errorMessageTitle"
+            :error-messages="errors.title"
             label="Заголовок"
             required
           />
@@ -42,7 +48,7 @@ const {
           <v-text-field
             v-model="description"
             :counter="100"
-            :error-messages="errorMessageDescription"
+            :error-messages="errors.description"
             label="Описание"
             required
           />

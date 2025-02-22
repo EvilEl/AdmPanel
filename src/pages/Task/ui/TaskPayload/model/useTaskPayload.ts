@@ -1,42 +1,60 @@
 import { useTask } from "@/entities/task/model/useTask/useTask";
-import { useField, useForm } from "vee-validate";
-import { ref } from "vue";
+import {  useForm } from "vee-validate";
+import {  ref,  } from "vue";
 import { useTaskManagerDialog } from "@/pages/Task/model";
 import { ITaskPayloadProps } from "../types";
+import * as  yup from 'yup'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 export function useTaskPayload(props: ITaskPayloadProps) {
   const valid = ref(false);
 
   const { addTask } = useTask();
   const { closeDialog } = useTaskManagerDialog();
-  const { handleSubmit } = useForm();
-  const { value: title, errorMessage: errorMessageTitle } =
-    useField<string>("title");
-  const { value: description, errorMessage: errorMessageDescription } =
-    useField<string>("description");
+  const { errors, defineField,submitForm } = useForm(
+    {
+      initialValues:{
+        title:props.task.title,
+        description:props.task.description
+      },
+      validationSchema: yup.object({
+        title: yup.string().required(),
+        description:yup.string().required()
+      }),
+    }
+  );
+  const [title] =
+  defineField('title')
 
-  function submit() {
+  const [description] =
+  defineField('description')
+
+
+  async function submit() {
     //TODO не работает handleSubmit из за того что используется schema разобраться почему
-    handleSubmit((values) => {
-      console.log("values", values);
-    });
+     await  submitForm()
+     const hasErrors = !!Object.keys(errors.value).length
+    if(hasErrors){
+      return
+    }
 
     addTask({
       title: title.value,
       description: description.value,
     });
 
-    //TODO мб не нужно после добавления закрывать а просто сбросить поля
+  //   //TODO мб не нужно после добавления закрывать а просто сбросить поля
     closeDialog();
   }
+
 
   return {
     valid,
     title,
     description,
-    errorMessageTitle,
-    errorMessageDescription,
+    errors,
     submit,
   };
 }
+
+
