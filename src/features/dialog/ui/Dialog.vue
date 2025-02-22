@@ -34,7 +34,7 @@ const isDialog = defineModel<boolean>("isDialog", {
     :min-width="options.minWidth"
     :width="options.width"
   >
-    <template v-slot:default="{ isActive }">
+    <template #default="{ isActive }">
       <v-card :title="options.title">
         <slot name="default">
           <v-card-text>
@@ -45,8 +45,11 @@ const isDialog = defineModel<boolean>("isDialog", {
 
         <v-card-actions>
           <slot name="buttons">
-            <v-spacer></v-spacer>
-            <v-btn text="Закрыть" @click="isActive.value = false"></v-btn>
+            <v-spacer />
+            <v-btn
+              text="Закрыть"
+              @click="isActive.value = false"
+            />
           </slot>
         </v-card-actions>
       </v-card>

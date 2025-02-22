@@ -4,7 +4,7 @@ import HomeLayout from "@/shared/ui/layouts/ui/HomeLayout";
 
 <template>
   <HomeLayout>
-    <router-view></router-view>
+    <router-view />
   </HomeLayout>
 </template>
 

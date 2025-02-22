@@ -56,7 +56,9 @@ const { isDialog, openDialog } = useTaskManagerDialog();
           @change="moveTask"
         >
           <template #item="{ element }">
-            <div :class="style['list-group-item']">{{ element.title }}</div>
+            <div :class="style['list-group-item']">
+              {{ element.title }}
+            </div>
           </template>
         </draggable>
       </div>
