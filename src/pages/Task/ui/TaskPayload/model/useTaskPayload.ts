@@ -2,8 +2,10 @@ import { useTask } from "@/entities/task/model/useTask/useTask";
 import { useField, useForm } from "vee-validate";
 import { ref } from "vue";
 import { useTaskManagerDialog } from "@/pages/Task/model";
+import { ITaskPayloadProps } from "../types";
 
-export function useTaskPayload() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function useTaskPayload(props: ITaskPayloadProps) {
   const valid = ref(false);
 
   const { addTask } = useTask();

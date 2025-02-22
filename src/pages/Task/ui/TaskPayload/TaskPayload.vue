@@ -7,7 +7,10 @@ import {
   VTextField,
   VBtn,
 } from "vuetify/components";
-import { useTaskPayload } from "./api";
+import { useTaskPayload } from "./model";
+import { ITaskPayloadProps } from "./types";
+
+const props = defineProps<ITaskPayloadProps>();
 
 const {
   title,
@@ -15,7 +18,7 @@ const {
   errorMessageTitle,
   errorMessageDescription,
   submit,
-} = useTaskPayload();
+} = useTaskPayload(props);
 </script>
 
 <template>

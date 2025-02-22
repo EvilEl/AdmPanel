@@ -42,6 +42,11 @@ const { isDialog, openDialog } = useTaskManagerDialog();
           <template #item="{ element }">
             <div :class="style['list-group-item']">
               {{ element.title }}
+              <v-btn
+                prepend-icon="mdi-pencil"
+                variant="text"
+                @click.stop="openDialog"
+              />
             </div>
           </template>
         </draggable>

@@ -51,6 +51,22 @@ export const useTask = createGlobalState(() => {
     tasks.value.push(newTask);
   }
 
+  function editTask(data: ITask) {
+    const task = tasks.value.find((task) => task.id === data.id);
+    if (!task) {
+      throw new Error("not found task");
+    }
+    const oldTask = { ...task };
+
+    try {
+      // api updateTask
+      Object.assign(task, data);
+    } catch (err) {
+      console.log(err);
+      Object.assign(task, oldTask);
+    }
+  }
+
   function moveTask(e: TaskDraggableAction): void {
     if ("added" in e) {
       console.log(e.added);
@@ -70,5 +86,6 @@ export const useTask = createGlobalState(() => {
     countTask,
     addTask,
     moveTask,
+    editTask,
   };
 });
