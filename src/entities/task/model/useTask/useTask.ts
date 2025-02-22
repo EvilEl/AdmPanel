@@ -1,8 +1,8 @@
 import { computed, ref, watch } from "vue";
 import { createGlobalState } from "@vueuse/core";
-import { ITask, ITaskPayload, StatusTask, TaskDraggableAction } from "../model";
+import { ITask, ITaskPayload, StatusTask, TaskDraggableAction } from "..";
 
-const useTask = createGlobalState(() => {
+export const useTask = createGlobalState(() => {
   const tasks = ref<ITask[]>([
     {
       title: "John",
@@ -48,7 +48,7 @@ const useTask = createGlobalState(() => {
       id: Math.random() * 100 + 1000,
       status: StatusTask["inProgress"],
     };
-    inProgressTasks.value.push(newTask);
+    tasks.value.push(newTask);
   }
 
   function moveTask(e: TaskDraggableAction): void {
@@ -72,5 +72,3 @@ const useTask = createGlobalState(() => {
     moveTask,
   };
 });
-
-export default useTask;

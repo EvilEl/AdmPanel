@@ -2,7 +2,7 @@
 import draggable from "vuedraggable";
 import { VBtn } from "vuetify/components";
 import Dialog from "@/features/dialog";
-import useTask from "@/entities/task/api/useTask";
+import { useTask } from "@/entities/task/model/useTask/useTask";
 import TaskPayload from "../TaskPayload";
 import { useTaskManagerDialog } from "@/pages/Task/model";
 import style from "./TaskManager.module.css";

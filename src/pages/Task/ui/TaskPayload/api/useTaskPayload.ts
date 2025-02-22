@@ -1,4 +1,4 @@
-import useTask from "@/entities/task/api/useTask";
+import { useTask } from "@/entities/task/model/useTask/useTask";
 import { useField, useForm } from "vee-validate";
 import { ref } from "vue";
 import { useTaskManagerDialog } from "@/pages/Task/model";
