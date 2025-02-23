@@ -16,6 +16,7 @@ const {
   countInProgressTasks,
   countTask,
   selectedTask,
+  removeTask,
   moveTask,
 } = useTask();
 const { isDialog,titleModal, openDialog } = useTaskManagerDialog();
@@ -60,6 +61,11 @@ const { isTaskDialog,openTaskDialog} = useTaskDialog()
                   variant="text"
                   @click.stop="openDialog(element)"
                 />
+                <v-btn
+                  prepend-icon="mdi-close-outline"
+                  variant="text"
+                  @click.stop="removeTask(element.id)"
+                />
               </div>
             </div>
           </template>
@@ -89,6 +95,11 @@ const { isTaskDialog,openTaskDialog} = useTaskDialog()
                   prepend-icon="mdi-pencil"
                   variant="text"
                   @click.stop="openDialog(element)"
+                />
+                <v-btn
+                  prepend-icon="mdi-close-outline"
+                  variant="text"
+                  @click.stop="removeTask(element.id)"
                 />
               </div>
             </div>

@@ -68,7 +68,7 @@ export const useTask = createGlobalState(() => {
   }
 
 
-   function remove(id:idTask){
+   function removeTask(id:idTask){
     const findTask = tasks.value.find(task=> task.id === id )
     if(!findTask){
       throw new Error("not found task");
@@ -98,7 +98,7 @@ export const useTask = createGlobalState(() => {
     countInProgressTasks,
     countTask,
     selectedTask,
-    remove,
+    removeTask,
     addTask,
     moveTask,
     editTask,
