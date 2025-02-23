@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { useTask } from "./useTask";
-import { ITask, StatusTask } from "..";
+import { StatusTask } from "../../types";
 import { nextTick } from "vue";
 
 describe("useTask", () => {
@@ -45,12 +45,6 @@ describe("useTask", () => {
   });
 
   it('on edit task',()=>{
-    const payload:ITask  = {
-      'title':'Task',
-      'description':'desc',
-      'id':1,
-      'status':'completed'
-    }
     task.tasks.value.push(payload)
     expect(task.tasks.value).toContainEqual(payload)
     const editPayload = {
@@ -59,6 +53,15 @@ describe("useTask", () => {
     }
     task.editTask(editPayload)
     expect(task.tasks.value).toContainEqual(editPayload)
+
+  })
+
+
+  it('on remove task',()=>{
+    task.tasks.value.push(payload)
+    expect(task.tasks.value).toContainEqual(payload)
+    task.remove(payload.id)
+    expect(task.tasks.value).not.toContainEqual(payload)
 
   })
 
