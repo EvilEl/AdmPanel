@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { useTask } from "./useTask";
-import { StatusTask } from "..";
+import { ITask, StatusTask } from "..";
 import { nextTick } from "vue";
 
 describe("useTask", () => {
@@ -43,6 +43,24 @@ describe("useTask", () => {
     await nextTick();
     expect(task.inProgressTasks.value).toHaveLength(1);
   });
+
+  it('on edit task',()=>{
+    const payload:ITask  = {
+      'title':'Task',
+      'description':'desc',
+      'id':1,
+      'status':'completed'
+    }
+    task.tasks.value.push(payload)
+    expect(task.tasks.value).toContainEqual(payload)
+    const editPayload = {
+      ...payload,
+      'description':'edit'
+    }
+    task.editTask(editPayload)
+    expect(task.tasks.value).toContainEqual(editPayload)
+
+  })
 
   it("add-task", () => {
     expect(task.tasks.value).toHaveLength(0);
