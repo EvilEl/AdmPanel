@@ -1,3 +1,5 @@
+import { StatusTask } from "./StatusTask";
+
 enum operationDraggable {
   "added" = "added",
   "removed" = "removed",
@@ -9,25 +11,28 @@ type TaskDraggable = {
     title: string;
     id: number;
     description: string;
-    status: "";
+    status: StatusTask;
   };
+  newIndex: number;
+  oldIndex: number;
 };
 
+
+
+
+
 type TaskDraggableMoved = Record<
-  operationDraggable.removed,
-  TaskDraggable & {
-    newIndex: number;
-    oldIndex: number;
-  }
+  operationDraggable.moved,
+  TaskDraggable
 >;
 
 type TaskDraggableAdded = Record<
   operationDraggable.added,
-  Omit<TaskDraggableMoved, "oldIndex">
+  Omit<TaskDraggable, "oldIndex">
 >;
 type TaskDraggableRemoved = Record<
-  operationDraggable.moved,
-  Omit<TaskDraggableMoved, "newIndex">
+  operationDraggable.removed,
+  Omit<TaskDraggable, "newIndex">
 >;
 
 type TaskDraggableAction =

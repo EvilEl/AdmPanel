@@ -20,6 +20,7 @@ export const useTask = createGlobalState(() => {
 
   const inProgressTasks = ref<ITask[]>([]);
   const completedTasks = ref<ITask[]>([]);
+  const selectedTask = ref<ITask | null>(null)
 
   watch(
     tasks,
@@ -57,7 +58,6 @@ export const useTask = createGlobalState(() => {
       throw new Error("not found task");
     }
     const oldTask = { ...task };
-
     try {
       // api updateTask
       Object.assign(task, data);
@@ -69,13 +69,16 @@ export const useTask = createGlobalState(() => {
 
   function moveTask(e: TaskDraggableAction): void {
     if ("added" in e) {
-      console.log(e.added);
+      e.added.element['status'] = StatusTask.inProgress === e.added.element['status']
+      ? StatusTask.completed
+      : StatusTask.inProgress
     } else if ("moved" in e) {
-      console.log(e.moved);
+      console.log('e.moved',e.moved);
     } else {
-      console.log(e.removed);
+      console.log('e.removed',e.removed);
     }
   }
+
 
   return {
     tasks,
@@ -84,6 +87,7 @@ export const useTask = createGlobalState(() => {
     countCompletedTasks,
     countInProgressTasks,
     countTask,
+    selectedTask,
     addTask,
     moveTask,
     editTask,

@@ -23,6 +23,7 @@ const {
   title,
   description,
   errors,
+  textBtn,
   submit,
 } = useTaskPayload(props);
 </script>
@@ -55,10 +56,10 @@ const {
         </v-col>
       </v-row>
       <v-btn
-        class="me-4"
+        class="me-4 mt-2"
         type="submit"
       >
-        Создать
+        {{ textBtn }}
       </v-btn>
     </v-container>
   </v-form>

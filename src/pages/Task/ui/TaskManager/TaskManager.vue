@@ -13,6 +13,7 @@ const {
   countCompletedTasks,
   countInProgressTasks,
   countTask,
+  selectedTask,
   moveTask,
 } = useTask();
 const { isDialog, openDialog } = useTaskManagerDialog();
@@ -24,7 +25,7 @@ const { isDialog, openDialog } = useTaskManagerDialog();
       :class="style['task-manager__add']"
       prepend-icon="mdi-plus-circle"
       variant="text"
-      @click.stop="openDialog"
+      @click.stop="openDialog(null)"
     >
       Задача
     </v-btn>
@@ -45,7 +46,7 @@ const { isDialog, openDialog } = useTaskManagerDialog();
               <v-btn
                 prepend-icon="mdi-pencil"
                 variant="text"
-                @click.stop="openDialog"
+                @click.stop="openDialog(element)"
               />
             </div>
           </template>
@@ -63,6 +64,11 @@ const { isDialog, openDialog } = useTaskManagerDialog();
           <template #item="{ element }">
             <div :class="style['list-group-item']">
               {{ element.title }}
+              <v-btn
+                prepend-icon="mdi-pencil"
+                variant="text"
+                @click.stop="openDialog(element)"
+              />
             </div>
           </template>
         </draggable>
@@ -73,7 +79,7 @@ const { isDialog, openDialog } = useTaskManagerDialog();
     v-model:is-dialog="isDialog"
     :options="{ title: 'Добавить задачу', maxWidth: 500 }"
   >
-    <TaskPayload />
+    <TaskPayload :task="selectedTask" />
   </Dialog>
 </template>
 
