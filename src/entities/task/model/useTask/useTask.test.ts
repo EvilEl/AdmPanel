@@ -53,7 +53,6 @@ describe("useTask", () => {
     }
     task.editTask(editPayload)
     expect(task.tasks.value).toContainEqual(editPayload)
-
   })
 
 
@@ -62,6 +61,7 @@ describe("useTask", () => {
     expect(task.tasks.value).toContainEqual(payload)
     task.remove(payload.id)
     expect(task.tasks.value).not.toContainEqual(payload)
+
 
   })
 
