@@ -9,14 +9,14 @@ describe('useTaskDialog',()=>{
   it('open dialog',()=>{
     const { openTaskDialog,isTaskDialog } = useTaskDialog();
     expect(isTaskDialog.value).toBe(false)
-    openTaskDialog()
+    openTaskDialog(null)
     expect(isTaskDialog.value).toBe(true)
 
   })
 
   it('close dialog',()=>{
     const { closeTaskDialog,isTaskDialog,openTaskDialog } = useTaskDialog();
-    openTaskDialog()
+    openTaskDialog(null)
     expect(isTaskDialog.value).toBe(true)
     closeTaskDialog()
     expect(isTaskDialog.value).toBe(false)

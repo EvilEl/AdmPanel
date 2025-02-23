@@ -4,7 +4,9 @@ import { VBtn } from "vuetify/components";
 import Dialog from "@/features/dialog";
 import { useTask } from "@/entities/task/model/useTask/useTask";
 import TaskPayload from "../TaskPayload";
+import TaskDescription from '../TaskDescription'
 import { useTaskManagerDialog } from "@/pages/Task/model/useTaskManagerDialog";
+import { useTaskDialog } from "@/pages/Task/model/useTaskDialog";
 import style from "./TaskManager.module.css";
 
 const {
@@ -17,6 +19,7 @@ const {
   moveTask,
 } = useTask();
 const { isDialog,titleModal, openDialog } = useTaskManagerDialog();
+const { isTaskDialog,openTaskDialog} = useTaskDialog()
 </script>
 
 <template>
@@ -41,13 +44,23 @@ const { isDialog,titleModal, openDialog } = useTaskManagerDialog();
         >
           >
           <template #item="{ element }">
-            <div :class="style['list-group-item']">
+            <div
+              :class="style['list-group-item']"
+              @click="openTaskDialog(element)"
+            >
               {{ element.title }}
-              <v-btn
-                prepend-icon="mdi-pencil"
-                variant="text"
-                @click.stop="openDialog(element)"
-              />
+              <div>
+                <v-btn
+                  prepend-icon="mdi-book-open"
+                  variant="text"
+                  @click.stop="openTaskDialog(element)"
+                />
+                <v-btn
+                  prepend-icon="mdi-pencil"
+                  variant="text"
+                  @click.stop="openDialog(element)"
+                />
+              </div>
             </div>
           </template>
         </draggable>
@@ -62,13 +75,22 @@ const { isDialog,titleModal, openDialog } = useTaskManagerDialog();
           @change="moveTask"
         >
           <template #item="{ element }">
-            <div :class="style['list-group-item']">
+            <div
+              :class="style['list-group-item']"
+            >
               {{ element.title }}
-              <v-btn
-                prepend-icon="mdi-pencil"
-                variant="text"
-                @click.stop="openDialog(element)"
-              />
+              <div>
+                <v-btn
+                  prepend-icon="mdi-book-open"
+                  variant="text"
+                  @click.stop="openTaskDialog(element)"
+                />
+                <v-btn
+                  prepend-icon="mdi-pencil"
+                  variant="text"
+                  @click.stop="openDialog(element)"
+                />
+              </div>
             </div>
           </template>
         </draggable>
@@ -83,10 +105,13 @@ const { isDialog,titleModal, openDialog } = useTaskManagerDialog();
   </Dialog>
 
   <Dialog
-    v-model:is-dialog="isDialog"
+    v-model:is-dialog="isTaskDialog"
     :options="{ title: 'Описание задачи', maxWidth: 500 }"
   >
-    <!-- <TaskPayload :task="selectedTask" /> -->
+    <TaskDescription
+      v-if="selectedTask"
+      :task="selectedTask"
+    />
   </Dialog>
 </template>
 
