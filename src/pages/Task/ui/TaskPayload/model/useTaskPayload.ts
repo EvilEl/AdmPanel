@@ -1,7 +1,7 @@
 import {  computed, ref,  } from "vue";
 import { useTask } from "@/entities/task/model/useTask/useTask";
 import {  useForm } from "vee-validate";
-import { useTaskManagerDialog } from "@/pages/Task/model";
+import { useTaskManagerDialog } from "@/pages/Task/model/useTaskManagerDialog";
 import { ITaskPayloadProps } from "../types";
 import * as  yup from 'yup'
 import { ITask } from "@/entities/task/model";

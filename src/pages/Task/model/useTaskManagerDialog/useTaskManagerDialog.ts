@@ -1,13 +1,18 @@
+import { computed, ref } from "vue";
 import { ITask } from "@/entities/task/model";
 import { useTask } from "@/entities/task/model/useTask";
 import { createGlobalState } from "@vueuse/core";
-import { ref } from "vue";
 
 const useTaskManagerDialog = createGlobalState(() => {
   const isDialog = ref(false);
   const { selectedTask } = useTask()
 
+  const titleModal = computed( ()=> selectedTask.value
+    ? 'Редактировать задачу'
+    :'Создать задачу')
+
   function closeDialog() {
+    selectedTask.value = null
     isDialog.value = false;
   }
 
@@ -18,6 +23,7 @@ const useTaskManagerDialog = createGlobalState(() => {
 
   return {
     isDialog,
+    titleModal,
     closeDialog,
     openDialog,
   };

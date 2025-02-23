@@ -4,7 +4,7 @@ import { VBtn } from "vuetify/components";
 import Dialog from "@/features/dialog";
 import { useTask } from "@/entities/task/model/useTask/useTask";
 import TaskPayload from "../TaskPayload";
-import { useTaskManagerDialog } from "@/pages/Task/model";
+import { useTaskManagerDialog } from "@/pages/Task/model/useTaskManagerDialog";
 import style from "./TaskManager.module.css";
 
 const {
@@ -16,7 +16,7 @@ const {
   selectedTask,
   moveTask,
 } = useTask();
-const { isDialog, openDialog } = useTaskManagerDialog();
+const { isDialog,titleModal, openDialog } = useTaskManagerDialog();
 </script>
 
 <template>
@@ -77,12 +77,16 @@ const { isDialog, openDialog } = useTaskManagerDialog();
   </div>
   <Dialog
     v-model:is-dialog="isDialog"
-    :options="{ title: 'Добавить задачу', maxWidth: 500 }"
+    :options="{ title: titleModal, maxWidth: 500 }"
   >
     <TaskPayload :task="selectedTask" />
   </Dialog>
+
+  <Dialog
+    v-model:is-dialog="isDialog"
+    :options="{ title: 'Описание задачи', maxWidth: 500 }"
+  >
+    <!-- <TaskPayload :task="selectedTask" /> -->
+  </Dialog>
 </template>
 
-<style scoped>
-/* @import "./TaskManager.css"; */
-</style>
