@@ -1,8 +1,13 @@
-import { computed, ref, watch } from "vue";
+import { computed, inject, Ref, ref, watch } from "vue";
 import { createGlobalState } from "@vueuse/core";
 import { ITask, idTask, ITaskPayload, StatusTask, TaskDraggableAction } from "../../types/";
+import injectKeyConfirmProvider from '@/shared/ui/confirm/injectKeys'
+import ConfirmProvider from '@/shared/ui/confirm/ConfirmProvider.vue'
 
 export const useTask = createGlobalState(() => {
+
+  const confirmProvider = inject<Ref<InstanceType<typeof ConfirmProvider> | null>>(injectKeyConfirmProvider, ref(null))
+
   const tasks = ref<ITask[]>([
     {
       title: "John",
@@ -59,7 +64,6 @@ export const useTask = createGlobalState(() => {
     }
     const oldTask = { ...task };
     try {
-      // api updateTask
       Object.assign(task, data);
     } catch (err) {
       console.log(err);
@@ -68,24 +72,30 @@ export const useTask = createGlobalState(() => {
   }
 
 
-   function removeTask(id:idTask){
-    const findTask = tasks.value.find(task=> task.id === id )
-    if(!findTask){
+  async function removeTask(id: idTask) {
+    if (!confirmProvider.value) return
+    const res = await confirmProvider.value.open({
+      'title': 'Удалить задачу',
+      'message': 'Вы точно решили удалить задачу?'
+    })
+    if (!res) return
+    const findTask = tasks.value.find(task => task.id === id)
+    if (!findTask) {
       throw new Error("not found task");
     }
-    tasks.value = tasks.value.filter(task=> task.id !== id )
-   }
+    tasks.value = tasks.value.filter(task => task.id !== id)
+  }
 
 
   function moveTask(e: TaskDraggableAction): void {
     if ("added" in e) {
       e.added.element['status'] = StatusTask.inProgress === e.added.element['status']
-      ? StatusTask.completed
-      : StatusTask.inProgress
+        ? StatusTask.completed
+        : StatusTask.inProgress
     } else if ("moved" in e) {
-      console.log('e.moved',e.moved);
+      console.log('e.moved', e.moved);
     } else {
-      console.log('e.removed',e.removed);
+      console.log('e.removed', e.removed);
     }
   }
 

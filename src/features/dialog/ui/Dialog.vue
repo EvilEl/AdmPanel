@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IPropsDialog, IEmitsDialog } from "./model";
+import type { IPropsDialog, } from "./model";
 import {
   VDialog,
   VBtn,
@@ -9,9 +9,8 @@ import {
   VCardActions,
 } from "vuetify/components";
 
-defineEmits<IEmitsDialog>();
 
-const { options } = withDefaults(defineProps<IPropsDialog>(), {
+withDefaults(defineProps<IPropsDialog>(), {
   options: () => ({
     width: "auto",
     maxWidth: 500,
@@ -21,19 +20,16 @@ const { options } = withDefaults(defineProps<IPropsDialog>(), {
   isDialog: false,
 });
 
-const isDialog = defineModel<boolean>("isDialog", {
+const isDialog = defineModel("isDialog", {
   type: Boolean,
   default: false,
 });
+
+
 </script>
 
 <template>
-  <v-dialog
-    v-model="isDialog"
-    :max-width="options.maxWidth"
-    :min-width="options.minWidth"
-    :width="options.width"
-  >
+  <v-dialog v-model="isDialog" :max-width="options.maxWidth" :min-width="options.minWidth" :width="options.width">
     <template #default="{ isActive }">
       <v-card :title="options.title">
         <slot name="default">
@@ -46,10 +42,7 @@ const isDialog = defineModel<boolean>("isDialog", {
         <v-card-actions>
           <slot name="buttons">
             <v-spacer />
-            <v-btn
-              text="Закрыть"
-              @click="isActive.value = false"
-            />
+            <v-btn text="Закрыть" @click="isActive.value = false" />
           </slot>
         </v-card-actions>
       </v-card>

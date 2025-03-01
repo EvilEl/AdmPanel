@@ -32,7 +32,8 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "typings/*.d.ts",
-    "vite.config.ts"
+    "vite.config.ts",
+    "src/shared/ui/confirm/injectKeys.js"
   ],
   "exclude": ["dist", "**/*.js", "node_modules"]
 }
