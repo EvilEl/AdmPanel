@@ -1,12 +1,12 @@
 import { computed, inject, Ref, ref, watch } from "vue";
 import { createGlobalState } from "@vueuse/core";
 import { ITask, idTask, ITaskPayload, StatusTask, TaskDraggableAction } from "../../types/";
-import injectKeyConfirmProvider from '@/shared/ui/confirm/injectKeys'
+import ConfirmProviderSymbol from '@/shared/ui/confirm/injectKeys'
 import ConfirmProvider from '@/shared/ui/confirm/ConfirmProvider.vue'
 
 export const useTask = createGlobalState(() => {
 
-  const confirmProvider = inject<Ref<InstanceType<typeof ConfirmProvider> | null>>(injectKeyConfirmProvider, ref(null))
+  const confirmProvider = inject<Ref<InstanceType<typeof ConfirmProvider> | null>>(ConfirmProviderSymbol, ref(null))
 
   const tasks = ref<ITask[]>([
     {

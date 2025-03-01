@@ -1,2 +1,2 @@
-const injectKeyConfirmProvider = Symbol('injectKeyConfirmProvider')
-export default injectKeyConfirmProvider
+const ConfirmProviderSymbol = Symbol('ConfirmProvider')
+export default ConfirmProviderSymbol
