@@ -43,7 +43,7 @@ defineExpose({ open })
   <slot />
   <Dialog v-model:is-dialog="isVisible" :options="{
     title: title
-  }" max-width="400px">
+  }" max-width="25rem">
     <v-card-text>
       <v-card-text>{{ msg }}</v-card-text>
     </v-card-text>

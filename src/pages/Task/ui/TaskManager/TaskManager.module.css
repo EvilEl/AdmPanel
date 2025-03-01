@@ -24,7 +24,7 @@
   border-radius: 0.25rem;
   width: 100%;
   background-color: #fff;
-  min-height: 40px;
+  min-height: 3.875rem;
 }
 
 .list-group-item:first-child {
