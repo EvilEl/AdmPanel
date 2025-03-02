@@ -5,19 +5,19 @@ import { createGlobalState } from "@vueuse/core";
 
 const useTaskManagerDialog = createGlobalState(() => {
   const isDialog = ref(false);
-  const { selectedTask } = useTask()
+  const { selectedTask } = useTask();
 
-  const titleModal = computed( ()=> selectedTask.value
-    ? 'Редактировать задачу'
-    :'Создать задачу')
+  const titleModal = computed(() =>
+    selectedTask.value ? "Редактировать задачу" : "Создать задачу",
+  );
 
   function closeDialog() {
-    selectedTask.value = null
+    selectedTask.value = null;
     isDialog.value = false;
   }
 
-  function openDialog(task:ITask | null) {
-    selectedTask.value = task
+  function openDialog(task: ITask | null) {
+    selectedTask.value = task;
     isDialog.value = true;
   }
 

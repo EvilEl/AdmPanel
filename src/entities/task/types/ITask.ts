@@ -1,8 +1,6 @@
 import { StatusTask } from "./StatusTask";
 
-
-
-type idTask = number|string
+type idTask = number | string;
 interface ITask {
   id: idTask;
   title: string;
@@ -12,4 +10,4 @@ interface ITask {
 
 interface ITaskPayload extends Pick<ITask, "title" | "description"> {}
 
-export type { ITask, ITaskPayload,idTask };
+export type { ITask, ITaskPayload, idTask };

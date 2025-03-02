@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IPropsDialog, } from "./model";
+import type { IPropsDialog } from "./model";
 import {
   VDialog,
   VBtn,
@@ -8,7 +8,6 @@ import {
   VCardText,
   VCardActions,
 } from "vuetify/components";
-
 
 withDefaults(defineProps<IPropsDialog>(), {
   options: () => ({
@@ -19,17 +18,19 @@ withDefaults(defineProps<IPropsDialog>(), {
   }),
   isDialog: false,
 });
-
 const isDialog = defineModel("isDialog", {
   type: Boolean,
   default: false,
 });
-
-
 </script>
 
 <template>
-  <v-dialog v-model="isDialog" :max-width="options.maxWidth" :min-width="options.minWidth" :width="options.width">
+  <v-dialog
+    v-model="isDialog"
+    :max-width="options.maxWidth"
+    :min-width="options.minWidth"
+    :width="options.width"
+  >
     <template #default="{ isActive }">
       <v-card :title="options.title">
         <slot name="default">

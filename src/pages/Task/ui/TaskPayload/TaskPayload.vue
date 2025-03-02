@@ -12,20 +12,14 @@ import { ITaskPayloadProps } from "./types";
 
 const props = withDefaults(defineProps<ITaskPayloadProps>(), {
   task: () => ({
-    id: '',
-    title: '',
-    description: '',
-    status: 'completed'
-  })
+    id: "",
+    title: "",
+    description: "",
+    status: "completed",
+  }),
 });
 
-const {
-  title,
-  description,
-  errors,
-  textBtn,
-  submit,
-} = useTaskPayload(props);
+const { title, description, errors, textBtn, submit } = useTaskPayload(props);
 </script>
 
 <template>
@@ -33,12 +27,23 @@ const {
     <v-container>
       <v-row>
         <v-col width="100%" md="100%">
-          <v-text-field v-model="title" :counter="100" :error-messages="errors.title" label="Заголовок" required />
+          <v-text-field
+            v-model="title"
+            :counter="100"
+            :error-messages="errors.title"
+            label="Заголовок"
+            required
+          />
         </v-col>
 
         <v-col md="100%">
-          <v-text-field v-model="description" :counter="100" :error-messages="errors.description" label="Описание"
-            required />
+          <v-text-field
+            v-model="description"
+            :counter="100"
+            :error-messages="errors.description"
+            label="Описание"
+            required
+          />
         </v-col>
       </v-row>
       <v-btn class="me-4 mt-2" type="submit">

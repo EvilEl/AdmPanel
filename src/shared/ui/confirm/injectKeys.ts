@@ -1,2 +1,2 @@
-const ConfirmProviderSymbol = Symbol('ConfirmProvider')
-export default ConfirmProviderSymbol
+const ConfirmProviderSymbol = Symbol("ConfirmProvider");
+export default ConfirmProviderSymbol;

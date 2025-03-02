@@ -17,14 +17,7 @@ type TaskDraggable = {
   oldIndex: number;
 };
 
-
-
-
-
-type TaskDraggableMoved = Record<
-  operationDraggable.moved,
-  TaskDraggable
->;
+type TaskDraggableMoved = Record<operationDraggable.moved, TaskDraggable>;
 
 type TaskDraggableAdded = Record<
   operationDraggable.added,

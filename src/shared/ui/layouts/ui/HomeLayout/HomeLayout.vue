@@ -20,11 +20,7 @@ const { isOpen } = useNavigationDrawler();
 <template>
   <v-responsive class="border rounded">
     <v-app :theme="themeName">
-      <v-navigation-drawer
-        :rail="isOpen"
-        permanent
-        @click="isOpen = false"
-      >
+      <v-navigation-drawer :rail="isOpen" permanent @click="isOpen = false">
         <v-list-item
           prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
           title="John Leider"
@@ -40,10 +36,7 @@ const { isOpen } = useNavigationDrawler();
         </v-list-item>
 
         <v-divider />
-        <v-list
-          density="compact"
-          nav
-        >
+        <v-list density="compact" nav>
           <v-list-item
             :to="{ name: 'home' }"
             prepend-icon="mdi-home-city"

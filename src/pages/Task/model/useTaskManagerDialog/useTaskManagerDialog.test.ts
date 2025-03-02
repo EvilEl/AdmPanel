@@ -14,21 +14,21 @@ describe("task-manager-dialog", () => {
     expect(isDialog.value).toBe(true);
   });
 
-  it('title modal not selected task',()=>{
+  it("title modal not selected task", () => {
     const { titleModal, openDialog } = useTaskManagerDialog();
     openDialog(null);
-    expect(titleModal.value).toBe('Создать задачу')
+    expect(titleModal.value).toBe("Создать задачу");
   });
 
-  it('title modal selected task',()=>{
+  it("title modal selected task", () => {
     const { titleModal, openDialog } = useTaskManagerDialog();
     openDialog({
-      'description':'desc',
-      'id':1,
-      'status':'completed',
-      'title':'title'
+      description: "desc",
+      id: 1,
+      status: "completed",
+      title: "title",
     });
-    expect(titleModal.value).toBe('Редактировать задачу')
+    expect(titleModal.value).toBe("Редактировать задачу");
   });
 
   it("close dialog", () => {

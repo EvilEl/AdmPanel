@@ -3,7 +3,7 @@ import { ComponentPublicInstance } from "vue";
 export function globalErrorHandler(
   err: unknown,
   instance: ComponentPublicInstance | null,
-  info: string
+  info: string,
 ) {
   if (err instanceof Error) {
     console.log("error", err.message);

@@ -1,11 +1,9 @@
-
 <script setup lang="ts">
-import { ITask } from '@/entities/task/model';
+import { ITask } from "@/entities/task/model";
 
 defineProps<{
-    task:ITask
-}>()
-
+  task: ITask;
+}>();
 </script>
 
 <template>
@@ -14,7 +12,4 @@ defineProps<{
   </div>
 </template>
 
-
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

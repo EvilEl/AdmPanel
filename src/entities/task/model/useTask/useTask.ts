@@ -1,12 +1,19 @@
 import { computed, inject, Ref, ref, watch } from "vue";
 import { createGlobalState } from "@vueuse/core";
-import { ITask, idTask, ITaskPayload, StatusTask, TaskDraggableAction } from "../../types/";
-import ConfirmProviderSymbol from '@/shared/ui/confirm/injectKeys'
-import ConfirmProvider from '@/shared/ui/confirm/ConfirmProvider.vue'
+import {
+  ITask,
+  idTask,
+  ITaskPayload,
+  StatusTask,
+  TaskDraggableAction,
+} from "../../types/";
+import ConfirmProviderSymbol from "@/shared/ui/confirm/injectKeys";
+import ConfirmProvider from "@/shared/ui/confirm/ConfirmProvider.vue";
 
 export const useTask = createGlobalState(() => {
-
-  const confirmProvider = inject<Ref<InstanceType<typeof ConfirmProvider> | null>>(ConfirmProviderSymbol, ref(null))
+  const confirmProvider = inject<
+    Ref<InstanceType<typeof ConfirmProvider> | null>
+  >(ConfirmProviderSymbol, ref(null));
 
   const tasks = ref<ITask[]>([
     {
@@ -25,27 +32,27 @@ export const useTask = createGlobalState(() => {
 
   const inProgressTasks = ref<ITask[]>([]);
   const completedTasks = ref<ITask[]>([]);
-  const selectedTask = ref<ITask | null>(null)
+  const selectedTask = ref<ITask | null>(null);
 
   watch(
     tasks,
     () => {
       inProgressTasks.value = tasks.value.filter(
-        (task) => task.status === StatusTask["inProgress"]
+        (task) => task.status === StatusTask["inProgress"],
       );
       completedTasks.value = tasks.value.filter(
-        (task) => task.status === StatusTask["completed"]
+        (task) => task.status === StatusTask["completed"],
       );
     },
-    { immediate: true, deep: true }
+    { immediate: true, deep: true },
   );
 
   const countTask = computed<number>(() => tasks.value.length);
   const countCompletedTasks = computed<number>(
-    () => completedTasks.value.length
+    () => completedTasks.value.length,
   );
   const countInProgressTasks = computed<number>(
-    () => inProgressTasks.value.length
+    () => inProgressTasks.value.length,
   );
 
   function addTask(data: ITaskPayload): void {
@@ -71,34 +78,32 @@ export const useTask = createGlobalState(() => {
     }
   }
 
-
   async function removeTask(id: idTask) {
-    if (!confirmProvider.value) return
+    if (!confirmProvider.value) return;
     const res = await confirmProvider.value.open({
-      'title': 'Удалить задачу',
-      'message': 'Вы точно решили удалить задачу?'
-    })
-    if (!res) return
-    const findTask = tasks.value.find(task => task.id === id)
+      title: "Удалить задачу",
+      message: "Вы точно решили удалить задачу?",
+    });
+    if (!res) return;
+    const findTask = tasks.value.find((task) => task.id === id);
     if (!findTask) {
       throw new Error("not found task");
     }
-    tasks.value = tasks.value.filter(task => task.id !== id)
+    tasks.value = tasks.value.filter((task) => task.id !== id);
   }
-
 
   function moveTask(e: TaskDraggableAction): void {
     if ("added" in e) {
-      e.added.element['status'] = StatusTask.inProgress === e.added.element['status']
-        ? StatusTask.completed
-        : StatusTask.inProgress
+      e.added.element["status"] =
+        StatusTask.inProgress === e.added.element["status"]
+          ? StatusTask.completed
+          : StatusTask.inProgress;
     } else if ("moved" in e) {
-      console.log('e.moved', e.moved);
+      console.log("e.moved", e.moved);
     } else {
-      console.log('e.removed', e.removed);
+      console.log("e.removed", e.removed);
     }
   }
-
 
   return {
     tasks,

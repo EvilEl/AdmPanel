@@ -14,7 +14,7 @@ export const useHandleTheme = createGlobalState(() => {
   const iconTheme = computed(() =>
     storageTheme.value === appThemeEnum.LIGHT
       ? "mdi-weather-sunny"
-      : "mdi-weather-night"
+      : "mdi-weather-night",
   );
 
   const changeTheme = () => {

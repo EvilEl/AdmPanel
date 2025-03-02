@@ -44,26 +44,23 @@ describe("useTask", () => {
     expect(task.inProgressTasks.value).toHaveLength(1);
   });
 
-  it('on edit task',()=>{
-    task.tasks.value.push(payload)
-    expect(task.tasks.value).toContainEqual(payload)
+  it("on edit task", () => {
+    task.tasks.value.push(payload);
+    expect(task.tasks.value).toContainEqual(payload);
     const editPayload = {
       ...payload,
-      'description':'edit'
-    }
-    task.editTask(editPayload)
-    expect(task.tasks.value).toContainEqual(editPayload)
-  })
+      description: "edit",
+    };
+    task.editTask(editPayload);
+    expect(task.tasks.value).toContainEqual(editPayload);
+  });
 
-
-  it('on remove task',()=>{
-    task.tasks.value.push(payload)
-    expect(task.tasks.value).toContainEqual(payload)
-    task.remove(payload.id)
-    expect(task.tasks.value).not.toContainEqual(payload)
-
-
-  })
+  it("on remove task", () => {
+    task.tasks.value.push(payload);
+    expect(task.tasks.value).toContainEqual(payload);
+    task.removeTask(payload.id);
+    expect(task.tasks.value).not.toContainEqual(payload);
+  });
 
   it("add-task", () => {
     expect(task.tasks.value).toHaveLength(0);
