@@ -56,6 +56,9 @@ importers:
       globals:
         specifier: ^15.15.0
         version: 15.15.0
+      prettier:
+        specifier: 3.5.3
+        version: 3.5.3
       typescript:
         specifier: ~5.7.2
         version: 5.7.3
@@ -1998,6 +2001,14 @@ packages:
       }
     engines: { node: ">= 0.8.0" }
 
+  prettier@3.5.3:
+    resolution:
+      {
+        integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==,
+      }
+    engines: { node: ">=14" }
+    hasBin: true
+
   property-expr@2.0.6:
     resolution:
       {
@@ -3743,6 +3754,8 @@ snapshots:
       source-map-js: 1.2.1
 
   prelude-ls@1.2.1: {}
+
+  prettier@3.5.3: {}
 
   property-expr@2.0.6: {}
 

@@ -26,7 +26,10 @@ const { title, description, errors, textBtn, submit } = useTaskPayload(props);
   <v-form @submit.prevent="submit">
     <v-container>
       <v-row>
-        <v-col width="100%" md="100%">
+        <v-col
+          width="100%"
+          md="100%"
+        >
           <v-text-field
             v-model="title"
             :counter="100"
@@ -46,7 +49,10 @@ const { title, description, errors, textBtn, submit } = useTaskPayload(props);
           />
         </v-col>
       </v-row>
-      <v-btn class="me-4 mt-2" type="submit">
+      <v-btn
+        class="me-4 mt-2"
+        type="submit"
+      >
         {{ textBtn }}
       </v-btn>
     </v-container>

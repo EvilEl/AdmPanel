@@ -43,7 +43,10 @@ const isDialog = defineModel("isDialog", {
         <v-card-actions>
           <slot name="buttons">
             <v-spacer />
-            <v-btn text="Закрыть" @click="isActive.value = false" />
+            <v-btn
+              text="Закрыть"
+              @click="isActive.value = false"
+            />
           </slot>
         </v-card-actions>
       </v-card>

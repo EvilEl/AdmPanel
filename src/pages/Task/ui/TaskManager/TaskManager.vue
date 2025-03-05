@@ -117,6 +117,9 @@ const { isTaskDialog, openTaskDialog } = useTaskDialog();
     v-model:is-dialog="isTaskDialog"
     :options="{ title: 'Описание задачи', maxWidth: 500 }"
   >
-    <TaskDescription v-if="selectedTask" :task="selectedTask" />
+    <TaskDescription
+      v-if="selectedTask"
+      :task="selectedTask"
+    />
   </Dialog>
 </template>

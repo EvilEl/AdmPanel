@@ -51,8 +51,18 @@ defineExpose({ open });
     <template #buttons>
       <v-card-actions>
         <v-spacer />
-        <v-btn color="grey" @click="handleCancel"> Отмена </v-btn>
-        <v-btn color="primary" @click="handleConfirm"> ОК </v-btn>
+        <v-btn
+          color="grey"
+          @click="handleCancel"
+        >
+          Отмена
+        </v-btn>
+        <v-btn
+          color="primary"
+          @click="handleConfirm"
+        >
+          ОК
+        </v-btn>
       </v-card-actions>
     </template>
   </Dialog>
