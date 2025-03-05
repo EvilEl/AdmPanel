@@ -12,7 +12,8 @@
     "test:run": "vitest run",
     "format": "prettier . --write",
     "lint:fix": "pnpm lint --fix",
-    "node:inspect": "pnpx node-modules-inspector"
+    "node:inspect": "pnpx node-modules-inspector",
+    "prepare:hooks": "simple-git-hooks"
   },
   "dependencies": {
     "@commitlint/types": "^19.5.0",
