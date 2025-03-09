@@ -3,6 +3,7 @@ import { useTask } from "./useTask";
 import { StatusTask } from "../../types";
 import { nextTick } from "vue";
 
+
 describe("useTask", () => {
   let task: ReturnType<typeof useTask>;
   const payload = {
@@ -55,10 +56,10 @@ describe("useTask", () => {
     expect(task.tasks.value).toContainEqual(editPayload);
   });
 
-  it("on remove task", () => {
+  it("on remove task", async () => {
     task.tasks.value.push(payload);
     expect(task.tasks.value).toContainEqual(payload);
-    task.removeTask(payload.id);
+    task.remove(payload.id);
     expect(task.tasks.value).not.toContainEqual(payload);
   });
 
