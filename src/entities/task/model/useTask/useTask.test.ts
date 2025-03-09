@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { useTask } from "./useTask";
 import { StatusTask } from "../../types";
 import { nextTick } from "vue";
+import { useConfirm } from "@/shared/ui/confirm/composables/useConfirm";
 
 describe("useTask", () => {
   let task: ReturnType<typeof useTask>;
@@ -56,9 +57,12 @@ describe("useTask", () => {
   });
 
   it("on remove task", async () => {
+    const { handleConfirm } = useConfirm();
     task.tasks.value.push(payload);
     expect(task.tasks.value).toContainEqual(payload);
-    task.remove(payload.id);
+    task.removeTask(payload.id);
+    handleConfirm();
+    await nextTick();
     expect(task.tasks.value).not.toContainEqual(payload);
   });
 

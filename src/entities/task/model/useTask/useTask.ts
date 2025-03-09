@@ -81,15 +81,11 @@ export const useTask = createGlobalState(() => {
       message: "Вы точно решили удалить задачу?",
     });
     if (!res) return;
-    remove(id);
-  }
-
-  function remove(id: idTask) {
     const findTask = tasks.value.find((task) => task.id === id);
     if (!findTask) {
       throw new Error("not found task");
     }
-    tasks.value = tasks.value.filter((task) => task.id !== id);
+    tasks.value = tasks.value.filter((task) => task.id !== findTask.id);
   }
 
   function moveTask(e: TaskDraggableAction): void {
@@ -113,7 +109,6 @@ export const useTask = createGlobalState(() => {
     countInProgressTasks,
     countTask,
     selectedTask,
-    remove,
     removeTask,
     addTask,
     moveTask,
