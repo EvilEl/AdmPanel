@@ -79,6 +79,8 @@ export const useTask = createGlobalState(() => {
   }
 
   async function removeTask(id: idTask) {
+    console.log('confirmProvider.value', confirmProvider.value);
+
     if (!confirmProvider.value) return;
     const res = await confirmProvider.value.open({
       title: "Удалить задачу",
