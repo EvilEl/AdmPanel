@@ -1,4 +1,4 @@
-import { computed, inject, Ref, ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { createGlobalState } from "@vueuse/core";
 import {
   ITask,
@@ -7,13 +7,10 @@ import {
   StatusTask,
   TaskDraggableAction,
 } from "../../types/";
-import ConfirmProviderSymbol from "@/shared/ui/confirm/injectKeys";
-import ConfirmProvider from "@/shared/ui/confirm/ConfirmProvider.vue";
+import { useConfirm } from "@/shared/ui/confirm/composables/useConfirm";
 
 export const useTask = createGlobalState(() => {
-  const confirmProvider = inject<
-    Ref<InstanceType<typeof ConfirmProvider> | null>
-  >(ConfirmProviderSymbol, ref(null));
+  const { open } = useConfirm();
 
   const tasks = ref<ITask[]>([
     {
@@ -79,10 +76,7 @@ export const useTask = createGlobalState(() => {
   }
 
   async function removeTask(id: idTask) {
-    console.log('confirmProvider.value', confirmProvider.value);
-
-    if (!confirmProvider.value) return;
-    const res = await confirmProvider.value.open({
+    const res = await open({
       title: "Удалить задачу",
       message: "Вы точно решили удалить задачу?",
     });
@@ -97,7 +91,6 @@ export const useTask = createGlobalState(() => {
     }
     tasks.value = tasks.value.filter((task) => task.id !== id);
   }
-
 
   function moveTask(e: TaskDraggableAction): void {
     if ("added" in e) {

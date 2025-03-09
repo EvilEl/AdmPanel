@@ -3,7 +3,6 @@ import { useTask } from "./useTask";
 import { StatusTask } from "../../types";
 import { nextTick } from "vue";
 
-
 describe("useTask", () => {
   let task: ReturnType<typeof useTask>;
   const payload = {

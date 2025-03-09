@@ -1,43 +1,12 @@
 <script setup lang="ts">
 import Dialog from "@/features/dialog";
 import { VCardText, VCardActions, VSpacer, VBtn } from "vuetify/components";
-import { ref } from "vue";
+import {useConfirm} from './composables/useConfirm'
 
-let resolver: ((value: boolean | PromiseLike<boolean>) => void) | null = null;
-
-const isVisible = ref(false);
-const title = ref("");
-const msg = ref("");
-
-function handleCancel() {
-  if (resolver) {
-    resolver(false);
-  }
-  isVisible.value = false;
-}
-
-function handleConfirm() {
-  if (resolver) {
-    resolver(true);
-  }
-  isVisible.value = false;
-}
-
-function open({ title: t, message }): Promise<boolean> {
-  title.value = t;
-  msg.value = message;
-
-  return new Promise<boolean>((resolve) => {
-    isVisible.value = true;
-    resolver = resolve;
-  });
-}
-
-defineExpose({ open });
+const {isVisible,title,msg,handleCancel,handleConfirm}= useConfirm()
 </script>
 
 <template>
-  <slot />
   <Dialog
     v-model:is-dialog="isVisible"
     :options="{
