@@ -10,11 +10,30 @@ import {
   VMain,
   VContainer,
   VDivider,
+  VListGroup
 } from "vuetify/components";
 import { useHandleTheme, useNavigationDrawler } from "@/shared/composables";
+import { RoutesName } from '@/shared/constants/index'
 
 const { themeName, iconTheme, changeTheme } = useHandleTheme();
 const { isOpen } = useNavigationDrawler();
+
+
+const authorizations = [
+  {
+    name:RoutesName.LOGIN,
+    title:'Вход'
+  },
+  {
+    name:RoutesName.REGISTRATION,
+    title:'Регистрация'
+  },
+  {
+    name:RoutesName.PASSWORD_RECOVERY,
+    title:'Восстановление пароля'
+  }
+]
+
 </script>
 
 <template>
@@ -45,17 +64,33 @@ const { isOpen } = useNavigationDrawler();
           nav
         >
           <v-list-item
-            :to="{ name: 'home' }"
+            :to="{ name: RoutesName.HOME }"
             prepend-icon="mdi-home-city"
             title="Домик"
             value="Домашняя"
           />
           <v-list-item
-            :to="{ name: 'task' }"
+            :to="{ name: RoutesName.HOME }"
             prepend-icon="mdi-file-tree"
             title="Задачи"
             value="Таски"
           />
+
+          <v-list-group value="Авторизация">
+            <template #activator="{ props }">
+              <v-list-item
+                v-bind="props"
+                title="Авторизация"
+              />
+            </template>
+
+            <v-list-item
+              v-for="(item,id) of authorizations"
+              :key="id"
+              :to="item.name"
+              :title="item.title"
+            />
+          </v-list-group>
         </v-list>
       </v-navigation-drawer>
       <v-app-bar title="Админ панель">
