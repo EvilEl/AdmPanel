@@ -1,4 +1,4 @@
-import { RoutesName } from "@/shared/constants/index";
+import { RoutesName } from "@/shared/constants";
 
 const routes = [
   { path: "/", name: RoutesName.HOME, component: () => import("@/pages/Home") },
@@ -15,7 +15,7 @@ const routes = [
   {
     path: "/registration",
     name: RoutesName.REGISTRATION,
-    component: () => import("@/pages/Task"),
+    component: () => import("@/pages/Registration"),
   },
   {
     path: "/passwordRecovery",

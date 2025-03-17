@@ -8,4 +8,8 @@ import HomeLayout from "@/shared/ui/layouts/ui/HomeLayout";
   </HomeLayout>
 </template>
 
-<style scoped></style>
+<style>
+a {
+  text-decoration: none;
+}
+</style>

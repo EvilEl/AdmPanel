@@ -2,10 +2,17 @@
   import {ref }from 'vue'
   import { useField, useForm } from 'vee-validate'
   import {VTextField, VBtn} from  "vuetify/components";
-  import { RoutesName } from "@/shared/constants";
 
   const { handleSubmit } = useForm({
     validationSchema: {
+      firstName(value:string){
+        if (value?.length >= 2) return true
+        return 'Имя должно состоять не менее чем из 2 символов'
+      },
+      lastName(value:string){
+        if (value?.length >= 2) return true
+        return 'Фамилия должно состоять не менее чем из 2 символов.'
+      },
       password (value:string) {
         if (value?.length >= 2) return true
         return 'Пароль должно состоять не менее чем из 2 символов.'
@@ -19,6 +26,9 @@
 
   const password = useField('password')
   const email = useField('email')
+  const firstName = useField('firstName')
+  const lastName = useField('lastName')
+
   const show1 = ref(false)
   const submit = handleSubmit(values => {
     alert(JSON.stringify(values, null, 2))
@@ -27,41 +37,45 @@
 
 <template>
   <form @submit.prevent="submit">
-    <div class="d-flex align-center justify-end">
-      <router-link
-        :to="{name:RoutesName.PASSWORD_RECOVERY}"
-      >
-        <a
-          class="text-caption text-decoration-none text-blue"
-        >
-          Забыли пароль?</a>
-      </router-link>
-    </div>
     <v-text-field
-      v-model="password.value.value"
-      :append-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="show1 ? 'text' : 'password'"
-      :error-messages="password.errorMessage.value"
-      name="input-10-1"
-      label="Пароль"
+      v-model="firstName.value.value"
+      :error-messages="firstName.errorMessage.value"
       color="primary"
+      label="Имя"
       variant="underlined"
-      @click:append-inner="show1 = !show1"
+    />
+
+    <v-text-field
+      v-model="lastName.value.value"
+      :error-messages="lastName.errorMessage.value"
+      color="primary"
+      label="Фамилия"
+      variant="underlined"
     />
 
     <v-text-field
       v-model="email.value.value"
-      color="primary"
-      variant="underlined"
       :error-messages="email.errorMessage.value"
+      color="primary"
       label="Почта"
+      variant="underlined"
+    />
+
+    <v-text-field
+      v-model="password.value.value"
+      :error-messages="password.errorMessage.value"
+      color="primary"
+      label="Пароль"
+      variant="underlined"
+      :append-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+      @click:append-inner="show1 = !show1"
     />
 
     <v-btn
       class="me-4"
       type="submit"
     >
-      Войти
+      Регистрация
     </v-btn>
   </form>
 </template>
