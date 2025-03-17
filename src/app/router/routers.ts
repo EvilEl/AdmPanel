@@ -20,7 +20,7 @@ const routes = [
   {
     path: "/passwordRecovery",
     name: RoutesName.PASSWORD_RECOVERY,
-    component: () => import("@/pages/Task"),
+    component: () => import("@/pages/RecoveryPassword"),
   },
 ];
 
