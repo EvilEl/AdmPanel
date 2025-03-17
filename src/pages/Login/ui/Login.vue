@@ -1,39 +1,16 @@
 <script setup lang="ts">
-  import {ref }from 'vue'
-  import { useField, useForm } from 'vee-validate'
-  import {VTextField, VBtn} from  "vuetify/components";
-  import { RoutesName } from "@/shared/constants";
+import { VTextField, VBtn } from "vuetify/components";
+import { RoutesName } from "@/shared/constants";
+import { useLogin } from "../composables";
 
-  const { handleSubmit } = useForm({
-    validationSchema: {
-      password (value:string) {
-        if (value?.length >= 2) return true
-        return 'Пароль должно состоять не менее чем из 2 символов.'
-      },
-      email (value:string) {
-        if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
-        return 'Должен быть действительный адрес электронной почты.'
-      },
-    },
-  })
-
-  const password = useField('password')
-  const email = useField('email')
-  const show1 = ref(false)
-  const submit = handleSubmit(values => {
-    alert(JSON.stringify(values, null, 2))
-  })
+const { password, email, show1, submit } = useLogin();
 </script>
 
 <template>
   <form @submit.prevent="submit">
     <div class="d-flex align-center justify-end">
-      <router-link
-        :to="{name:RoutesName.PASSWORD_RECOVERY}"
-      >
-        <a
-          class="text-caption text-decoration-none text-blue"
-        >
+      <router-link :to="{ name: RoutesName.PASSWORD_RECOVERY }">
+        <a class="text-caption text-decoration-none text-blue">
           Забыли пароль?</a>
       </router-link>
     </div>
@@ -42,7 +19,6 @@
       :append-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
       :type="show1 ? 'text' : 'password'"
       :error-messages="password.errorMessage.value"
-      name="input-10-1"
       label="Пароль"
       color="primary"
       variant="underlined"

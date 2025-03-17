@@ -10,30 +10,28 @@ import {
   VMain,
   VContainer,
   VDivider,
-  VListGroup
+  VListGroup,
 } from "vuetify/components";
 import { useHandleTheme, useNavigationDrawler } from "@/shared/composables";
-import { RoutesName } from '@/shared/constants/index'
+import { RoutesName } from "@/shared/constants/index";
 
 const { themeName, iconTheme, changeTheme } = useHandleTheme();
 const { isOpen } = useNavigationDrawler();
 
-
 const authorizations = [
   {
-    name:RoutesName.LOGIN,
-    title:'Вход'
+    name: RoutesName.LOGIN,
+    title: "Вход",
   },
   {
-    name:RoutesName.REGISTRATION,
-    title:'Регистрация'
+    name: RoutesName.REGISTRATION,
+    title: "Регистрация",
   },
   {
-    name:RoutesName.PASSWORD_RECOVERY,
-    title:'Восстановление пароля'
-  }
-]
-
+    name: RoutesName.PASSWORD_RECOVERY,
+    title: "Восстановление пароля",
+  },
+];
 </script>
 
 <template>
@@ -85,7 +83,7 @@ const authorizations = [
             </template>
 
             <v-list-item
-              v-for="(item,id) of authorizations"
+              v-for="(item, id) of authorizations"
               :key="id"
               :to="item.name"
               :title="item.title"

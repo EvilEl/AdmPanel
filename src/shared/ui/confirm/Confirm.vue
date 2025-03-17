@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Dialog from "@/features/dialog";
 import { VCardText, VCardActions, VSpacer, VBtn } from "vuetify/components";
-import {useConfirm} from './composables/useConfirm'
+import { useConfirm } from "./composables/useConfirm";
 
-const {isVisible,title,msg,handleCancel,handleConfirm}= useConfirm()
+const { isVisible, title, msg, handleCancel, handleConfirm } = useConfirm();
 </script>
 
 <template>

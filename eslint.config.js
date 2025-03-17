@@ -2,6 +2,7 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginVue from "eslint-plugin-vue";
+
 export default [
   {
     files: ["**/*.{js,mjs,cjs,ts,vue}"],
@@ -12,6 +13,7 @@ export default [
   ...pluginVue.configs["flat/recommended"],
   {
     files: ["*.vue", "**/*.vue"],
+    "parser": "vue-eslint-parser
     languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
   {
