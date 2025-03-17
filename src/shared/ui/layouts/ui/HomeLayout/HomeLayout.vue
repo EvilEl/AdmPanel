@@ -70,7 +70,7 @@ const authorizations = [
             value="Домашняя"
           />
           <v-list-item
-            :to="{ name: RoutesName.HOME }"
+            :to="{ name: RoutesName.TASK }"
             prepend-icon="mdi-file-tree"
             title="Задачи"
             value="Таски"
