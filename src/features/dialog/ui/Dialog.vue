@@ -1,57 +1,57 @@
 <script setup lang="ts">
-import type { IPropsDialog } from "./model";
 import {
-  VDialog,
   VBtn,
   VCard,
-  VSpacer,
-  VCardText,
   VCardActions,
-} from "vuetify/components";
+  VCardText,
+  VDialog,
+  VSpacer,
+} from 'vuetify/components'
+import type { IPropsDialog } from './model'
 
 withDefaults(defineProps<IPropsDialog>(), {
   options: () => ({
-    width: "auto",
+    width: 'auto',
     maxWidth: 500,
     minWidth: 500,
-    title: "Заголовок",
+    title: 'Заголовок',
   }),
   isDialog: false,
-});
-const isDialog = defineModel("isDialog", {
+})
+const isDialog = defineModel('isDialog', {
   type: Boolean,
+
   default: false,
-});
+})
 </script>
 
 <template>
-  <v-dialog
+  <VDialog
     v-model="isDialog"
     :max-width="options.maxWidth"
     :min-width="options.minWidth"
     :width="options.width"
   >
     <template #default="{ isActive }">
-      <v-card :title="options.title">
+      <VCard :title="options.title">
         <slot name="default">
-          <v-card-text>
+          <VCardText>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </v-card-text>
+          </VCardText>
         </slot>
 
-        <v-card-actions>
+        <VCardActions>
           <slot name="buttons">
-            <v-spacer />
-            <v-btn
-              text="Закрыть"
-              @click="isActive.value = false"
+            <VSpacer />
+            <VBtn
+              text="Закрыть" @click="isActive.value = false"
             />
           </slot>
-        </v-card-actions>
-      </v-card>
+        </VCardActions>
+      </VCard>
     </template>
-  </v-dialog>
+  </VDialog>
 </template>
 
 <style scoped></style>

@@ -1,3 +1,3 @@
-import TaskDescription from "./TaskDescription.vue";
+import TaskDescription from './TaskDescription.vue'
 
-export default TaskDescription;
+export default TaskDescription

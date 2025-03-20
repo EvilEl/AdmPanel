@@ -1,12 +1,12 @@
-type NumberOrString = number | string;
+type NumberOrString = number | string
 
 interface IOptionsDialog {
-  width: NumberOrString;
-  minWidth: NumberOrString;
-  maxWidth: NumberOrString;
-  title: string;
+  width: NumberOrString
+  minWidth: NumberOrString
+  maxWidth: NumberOrString
+  title: string
 }
 
-type OptionsDialogPartial = Partial<IOptionsDialog>;
+type OptionsDialogPartial = Partial<IOptionsDialog>
 
-export type { IOptionsDialog, OptionsDialogPartial };
+export type { IOptionsDialog, OptionsDialogPartial }

@@ -1,1 +1,1 @@
-export * from "./useRegistration";
+export * from './useRegistration'

@@ -1,20 +1,14 @@
 <script setup lang="ts">
-import { VTextField, VBtn } from "vuetify/components";
-import {useRegistration} from '../composables'
+import { VBtn, VTextField } from 'vuetify/components'
+import { useRegistration } from '../composables'
 
-const {
-    password,
-    email,
-    firstName,
-    lastName,
-    show1,
-    submit
-    } = useRegistration()
+const { password, email, firstName, lastName, show1, submit }
+  = useRegistration()
 </script>
 
 <template>
   <form @submit.prevent="submit">
-    <v-text-field
+    <VTextField
       v-model="firstName.value.value"
       :error-messages="firstName.errorMessage.value"
       color="primary"
@@ -22,7 +16,7 @@ const {
       variant="underlined"
     />
 
-    <v-text-field
+    <VTextField
       v-model="lastName.value.value"
       :error-messages="lastName.errorMessage.value"
       color="primary"
@@ -30,7 +24,7 @@ const {
       variant="underlined"
     />
 
-    <v-text-field
+    <VTextField
       v-model="email.value.value"
       :error-messages="email.errorMessage.value"
       color="primary"
@@ -38,7 +32,7 @@ const {
       variant="underlined"
     />
 
-    <v-text-field
+    <VTextField
       v-model="password.value.value"
       :error-messages="password.errorMessage.value"
       color="primary"
@@ -48,12 +42,9 @@ const {
       @click:append-inner="show1 = !show1"
     />
 
-    <v-btn
-      class="me-4"
-      type="submit"
-    >
+    <VBtn class="me-4" type="submit">
       Регистрация
-    </v-btn>
+    </VBtn>
   </form>
 </template>
 

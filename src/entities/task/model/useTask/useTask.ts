@@ -1,103 +1,104 @@
-import { computed, ref, watch } from "vue";
-import { createGlobalState } from "@vueuse/core";
-import {
-  ITask,
+import { useConfirm } from '@/shared/ui/confirm/composables/useConfirm'
+import { createGlobalState } from '@vueuse/core'
+import { computed, ref, watch } from 'vue'
+import { StatusTask } from '../../types/'
+import type {
   idTask,
+  ITask,
   ITaskPayload,
-  StatusTask,
   TaskDraggableAction,
-} from "../../types/";
-import { useConfirm } from "@/shared/ui/confirm/composables/useConfirm";
+} from '../../types/'
 
 export const useTask = createGlobalState(() => {
-  const { open } = useConfirm();
+  const { open } = useConfirm()
 
   const tasks = ref<ITask[]>([
     {
-      title: "John",
+      title: 'John',
       id: 1,
-      description: "description 1",
-      status: StatusTask["inProgress"],
+      description: 'description 1',
+      status: StatusTask.inProgress,
     },
     {
-      title: "Jean",
+      title: 'Jean',
       id: 2,
-      description: "description 2",
-      status: StatusTask["inProgress"],
+      description: 'description 2',
+      status: StatusTask.inProgress,
     },
-  ]);
+  ])
 
-  const inProgressTasks = ref<ITask[]>([]);
-  const completedTasks = ref<ITask[]>([]);
-  const selectedTask = ref<ITask | null>(null);
+  const inProgressTasks = ref<ITask[]>([])
+  const completedTasks = ref<ITask[]>([])
+  const selectedTask = ref<ITask | null>(null)
 
   watch(
     tasks,
     () => {
       inProgressTasks.value = tasks.value.filter(
-        (task) => task.status === StatusTask["inProgress"],
-      );
+        task => task.status === StatusTask.inProgress,
+      )
       completedTasks.value = tasks.value.filter(
-        (task) => task.status === StatusTask["completed"],
-      );
+        task => task.status === StatusTask.completed,
+      )
     },
     { immediate: true, deep: true },
-  );
+  )
 
-  const countTask = computed<number>(() => tasks.value.length);
+  const countTask = computed<number>(() => tasks.value.length)
   const countCompletedTasks = computed<number>(
     () => completedTasks.value.length,
-  );
+  )
   const countInProgressTasks = computed<number>(
     () => inProgressTasks.value.length,
-  );
+  )
 
   function addTask(data: ITaskPayload): void {
     const newTask = {
       ...data,
       id: Math.random() * 100 + 1000,
-      status: StatusTask["inProgress"],
-    };
-    tasks.value.push(newTask);
+      status: StatusTask.inProgress,
+    }
+    tasks.value.push(newTask)
   }
 
   function editTask(data: ITask) {
-    const task = tasks.value.find((task) => task.id === data.id);
+    const task = tasks.value.find(task => task.id === data.id)
     if (!task) {
-      throw new Error("not found task");
+      throw new Error('not found task')
     }
-    const oldTask = { ...task };
+    const oldTask = { ...task }
     try {
-      Object.assign(task, data);
+      Object.assign(task, data)
     } catch (err) {
-      console.log(err);
-      Object.assign(task, oldTask);
+      console.log(err)
+      Object.assign(task, oldTask)
     }
   }
 
   async function removeTask(id: idTask) {
     const res = await open({
-      title: "Удалить задачу",
-      message: "Вы точно решили удалить задачу?",
-    });
-    if (!res) return;
-    const findTask = tasks.value.find((task) => task.id === id);
+      title: 'Удалить задачу',
+      message: 'Вы точно решили удалить задачу?',
+    })
+    if (!res)
+      return
+    const findTask = tasks.value.find(task => task.id === id)
     if (!findTask) {
-      throw new Error("not found task");
+      throw new Error('not found task')
     }
-    tasks.value = tasks.value.filter((task) => task.id !== findTask.id);
+    tasks.value = tasks.value.filter(task => task.id !== findTask.id)
   }
 
   function moveTask(e: TaskDraggableAction): void {
-    if ("added" in e) {
-      e.added.element["status"] =
-        StatusTask.inProgress === e.added.element["status"]
+    if ('added' in e) {
+      e.added.element.status
+        = StatusTask.inProgress === e.added.element.status
           ? StatusTask.completed
-          : StatusTask.inProgress;
-    } else if ("moved" in e) {
-      console.log("e.moved", e.moved);
+          : StatusTask.inProgress
+    } else if ('moved' in e) {
+      console.log('e.moved', e.moved)
     } else {
-      console.log("e.removed", e.removed);
+      console.log('e.removed', e.removed)
     }
   }
 
@@ -113,5 +114,5 @@ export const useTask = createGlobalState(() => {
     addTask,
     moveTask,
     editTask,
-  };
-});
+  }
+})

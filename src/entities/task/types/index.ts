@@ -1,3 +1,3 @@
-export * from "./ITask";
-export * from "./StatusTask";
-export * from "./TaskDraggable";
+export * from './ITask'
+export * from './StatusTask'
+export * from './TaskDraggable'

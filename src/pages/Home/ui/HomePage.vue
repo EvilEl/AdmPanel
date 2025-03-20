@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { VCard, VCardText } from "vuetify/components";
-import { useTask } from "@/entities/task/model/useTask";
-const { countCompletedTasks, countTask } = useTask();
+import { useTask } from '@/entities/task/model/useTask'
+import { VCard, VCardText } from 'vuetify/components'
+
+const { countCompletedTasks, countTask } = useTask()
 </script>
+
 <template>
-  <v-card width="300">
+  <VCard width="300">
     <template #title>
       <span class="font-weight-black">Задачи</span>
     </template>
-    <v-card-text class="bg-surface-light pt-4">
+    <VCardText class="bg-surface-light pt-4">
       Общее количество задач: {{ countTask }} Выполнены задачи :
       {{ countCompletedTasks }}
-    </v-card-text>
-  </v-card>
+    </VCardText>
+  </VCard>
 </template>
+
 <style scoped></style>

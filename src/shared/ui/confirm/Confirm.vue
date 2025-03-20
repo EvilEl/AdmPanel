@@ -1,38 +1,33 @@
 <script setup lang="ts">
-import Dialog from "@/features/dialog";
-import { VCardText, VCardActions, VSpacer, VBtn } from "vuetify/components";
-import { useConfirm } from "./composables/useConfirm";
+import Dialog from '@/features/dialog'
+import { VBtn, VCardActions, VCardText, VSpacer } from 'vuetify/components'
+import { useConfirm } from './composables/useConfirm'
 
-const { isVisible, title, msg, handleCancel, handleConfirm } = useConfirm();
+const { isVisible, title, msg, handleCancel, handleConfirm } = useConfirm()
 </script>
 
 <template>
   <Dialog
     v-model:is-dialog="isVisible"
     :options="{
-      title: title,
+      title,
     }"
+
     max-width="25rem"
   >
-    <v-card-text>
-      <v-card-text>{{ msg }}</v-card-text>
-    </v-card-text>
+    <VCardText>
+      <VCardText>{{ msg }}</VCardText>
+    </VCardText>
     <template #buttons>
-      <v-card-actions>
-        <v-spacer />
-        <v-btn
-          color="grey"
-          @click="handleCancel"
-        >
+      <VCardActions>
+        <VSpacer />
+        <VBtn color="grey" @click="handleCancel">
           Отмена
-        </v-btn>
-        <v-btn
-          color="primary"
-          @click="handleConfirm"
-        >
+        </VBtn>
+        <VBtn color="primary" @click="handleConfirm">
           ОК
-        </v-btn>
-      </v-card-actions>
+        </VBtn>
+      </VCardActions>
     </template>
   </Dialog>
 </template>

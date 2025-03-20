@@ -1,10 +1,10 @@
-import { defineConfig } from "node-modules-inspector";
+import { defineConfig } from 'node-modules-inspector'
 
 export default defineConfig({
   defaultFilters: {
-    excludes: ["eslint"],
+    excludes: ['eslint'],
   },
   defaultSettings: {
     moduleTypeSimple: true,
   },
-});
+})

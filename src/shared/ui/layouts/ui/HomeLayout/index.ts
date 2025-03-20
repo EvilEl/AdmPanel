@@ -1,3 +1,3 @@
-import HomeLayout from "./HomeLayout.vue";
+import HomeLayout from './HomeLayout.vue'
 
-export default HomeLayout;
+export default HomeLayout

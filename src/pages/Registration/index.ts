@@ -1,3 +1,3 @@
-import Registration from "./ui/Registration.vue";
+import Registration from './ui/Registration.vue'
 
-export default Registration;
+export default Registration

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import draggable from "vuedraggable";
-import { VBtn } from "vuetify/components";
-import Dialog from "@/features/dialog";
-import { useTask } from "@/entities/task/model/useTask/useTask";
-import TaskPayload from "../TaskPayload";
-import TaskDescription from "../TaskDescription";
-import { useTaskManagerDialog } from "@/pages/Task/model/useTaskManagerDialog";
-import { useTaskDialog } from "@/pages/Task/model/useTaskDialog";
-import style from "./TaskManager.module.css";
+import { useTask } from '@/entities/task/model/useTask/useTask'
+import Dialog from '@/features/dialog'
+import { useTaskDialog } from '@/pages/Task/model/useTaskDialog'
+import { useTaskManagerDialog } from '@/pages/Task/model/useTaskManagerDialog'
+import draggable from 'vuedraggable'
+import { VBtn } from 'vuetify/components'
+import TaskDescription from '../TaskDescription'
+import TaskPayload from '../TaskPayload'
+import style from './TaskManager.module.css'
 
 const {
   inProgressTasks,
@@ -18,21 +18,21 @@ const {
   selectedTask,
   removeTask,
   moveTask,
-} = useTask();
-const { isDialog, titleModal, openDialog } = useTaskManagerDialog();
-const { isTaskDialog, openTaskDialog } = useTaskDialog();
+} = useTask()
+const { isDialog, titleModal, openDialog } = useTaskManagerDialog()
+const { isTaskDialog, openTaskDialog } = useTaskDialog()
 </script>
 
 <template>
   <div :class="style['task-manager']">
-    <v-btn
+    <VBtn
       :class="style['task-manager__add']"
       prepend-icon="mdi-plus-circle"
       variant="text"
       @click.stop="openDialog(null)"
     >
       Задача
-    </v-btn>
+    </VBtn>
     <div :class="style['task-manager__content']">
       <div :class="style['task-manager__draggable']">
         В процессе: {{ countInProgressTasks }}
@@ -51,17 +51,17 @@ const { isTaskDialog, openTaskDialog } = useTaskDialog();
             >
               {{ element.title }}
               <div>
-                <v-btn
+                <VBtn
                   prepend-icon="mdi-book-open"
                   variant="text"
                   @click.stop="openTaskDialog(element)"
                 />
-                <v-btn
+                <VBtn
                   prepend-icon="mdi-pencil"
                   variant="text"
                   @click.stop="openDialog(element)"
                 />
-                <v-btn
+                <VBtn
                   prepend-icon="mdi-close-outline"
                   variant="text"
                   @click.stop="removeTask(element.id)"
@@ -84,17 +84,17 @@ const { isTaskDialog, openTaskDialog } = useTaskDialog();
             <div :class="style['list-group-item']">
               {{ element.title }}
               <div>
-                <v-btn
+                <VBtn
                   prepend-icon="mdi-book-open"
                   variant="text"
                   @click.stop="openTaskDialog(element)"
                 />
-                <v-btn
+                <VBtn
                   prepend-icon="mdi-pencil"
                   variant="text"
                   @click.stop="openDialog(element)"
                 />
-                <v-btn
+                <VBtn
                   prepend-icon="mdi-close-outline"
                   variant="text"
                   @click.stop="removeTask(element.id)"
@@ -117,9 +117,6 @@ const { isTaskDialog, openTaskDialog } = useTaskDialog();
     v-model:is-dialog="isTaskDialog"
     :options="{ title: 'Описание задачи', maxWidth: 500 }"
   >
-    <TaskDescription
-      v-if="selectedTask"
-      :task="selectedTask"
-    />
+    <TaskDescription v-if="selectedTask" :task="selectedTask" />
   </Dialog>
 </template>

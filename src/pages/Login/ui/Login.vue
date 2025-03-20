@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { VTextField, VBtn } from "vuetify/components";
-import { RoutesName } from "@/shared/constants";
-import { useLogin } from "../composables";
+import { RoutesName } from '@/shared/constants'
+import { VBtn, VTextField } from 'vuetify/components'
+import { useLogin } from '../composables'
 
-const { password, email, show1, submit } = useLogin();
+const { password, email, show1, submit } = useLogin()
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const { password, email, show1, submit } = useLogin();
           Забыли пароль?</a>
       </router-link>
     </div>
-    <v-text-field
+    <VTextField
       v-model="password.value.value"
       :append-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
       :type="show1 ? 'text' : 'password'"
@@ -25,7 +25,7 @@ const { password, email, show1, submit } = useLogin();
       @click:append-inner="show1 = !show1"
     />
 
-    <v-text-field
+    <VTextField
       v-model="email.value.value"
       color="primary"
       variant="underlined"
@@ -33,12 +33,9 @@ const { password, email, show1, submit } = useLogin();
       label="Почта"
     />
 
-    <v-btn
-      class="me-4"
-      type="submit"
-    >
+    <VBtn class="me-4" type="submit">
       Войти
-    </v-btn>
+    </VBtn>
   </form>
 </template>
 

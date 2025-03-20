@@ -1,29 +1,48 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import pluginVue from "eslint-plugin-vue";
-export default [
-  {
-    files: ["**/*.{js,mjs,cjs,ts,vue}"],
-  },
-  { languageOptions: { globals: globals.browser } },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...pluginVue.configs["flat/recommended"],
-  {
-    files: ["*.vue", "**/*.vue"],
-    languageOptions: { parserOptions: { parser: tseslint.parser } },
-  },
-  {
-    rules: {
-      "@typescript-eslint/ban-ts-comment": [
-        "error",
-        {
-          "ts-ignore": false, // Разрешить @ts-ignore с описанием
-        },
+import antfu from '@antfu/eslint-config'
+
+export default antfu({
+  typescript: true,
+  markdown: true,
+  yaml: true,
+  rules: {
+    'curly': 'off',
+    'no-alert': 'off',
+    'no-console': 'off',
+    'antfu/if-newline': 'off',
+    'antfu/no-top-level-await': 'off',
+    'unused-imports/no-unused-imports': 'warn',
+    'eslint-comments/no-unlimited-disable': 'off',
+    'perfectionist/sort-imports': ['error', {
+      groups: [
+        'builtin',
+        'external',
+        ['internal', 'internal-type'],
+        ['parent', 'sibling', 'index'],
+
+        'type',
+        ['parent-type', 'sibling-type', 'index-type'],
+
+        'side-effect',
+        'object',
+        'unknown',
       ],
-      "vue/multi-word-component-names": "off",
-      "@typescript-eslint/no-empty-object-type": "off",
+      newlinesBetween: 'ignore',
+      order: 'asc',
+      type: 'natural',
+    }],
+  },
+  vue: {
+    overrides: {
+      'vue/block-order': ['warn', {
+        order: [['template', 'script'], 'style'],
+      }],
+      'vue/custom-event-name-casing': ['error', 'kebab-case'],
     },
   },
-];
+  stylistic: {
+    overrides: {
+      'style/brace-style': ['warn', '1tbs'],
+      'style/arrow-parens': 'off',
+    },
+  },
+})

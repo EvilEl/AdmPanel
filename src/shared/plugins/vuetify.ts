@@ -1,6 +1,6 @@
-//@ts-ignore
-import "vuetify/styles";
-import { createVuetify } from "vuetify";
+import { createVuetify } from 'vuetify'
+import 'vuetify/styles'
+
 export default createVuetify({
-  theme: { defaultTheme: "dark" },
-});
+  theme: { defaultTheme: 'dark' },
+})

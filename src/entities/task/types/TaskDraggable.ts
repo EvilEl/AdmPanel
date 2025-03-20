@@ -1,36 +1,36 @@
-import { StatusTask } from "./StatusTask";
+import type { StatusTask } from './StatusTask'
 
 enum operationDraggable {
-  "added" = "added",
-  "removed" = "removed",
-  "moved" = "moved",
+  added = 'added',
+  removed = 'removed',
+  moved = 'moved',
 }
 
-type TaskDraggable = {
+interface TaskDraggable {
   element: {
-    title: string;
-    id: number;
-    description: string;
-    status: StatusTask;
-  };
-  newIndex: number;
-  oldIndex: number;
-};
+    title: string
+    id: number
+    description: string
+    status: StatusTask
+  }
+  newIndex: number
+  oldIndex: number
+}
 
-type TaskDraggableMoved = Record<operationDraggable.moved, TaskDraggable>;
+type TaskDraggableMoved = Record<operationDraggable.moved, TaskDraggable>
 
 type TaskDraggableAdded = Record<
   operationDraggable.added,
-  Omit<TaskDraggable, "oldIndex">
->;
+  Omit<TaskDraggable, 'oldIndex'>
+>
 type TaskDraggableRemoved = Record<
   operationDraggable.removed,
-  Omit<TaskDraggable, "newIndex">
->;
+  Omit<TaskDraggable, 'newIndex'>
+>
 
 type TaskDraggableAction =
   | TaskDraggableMoved
   | TaskDraggableAdded
-  | TaskDraggableRemoved;
+  | TaskDraggableRemoved
 
-export type { TaskDraggableAction };
+export type { TaskDraggableAction }

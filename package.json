@@ -1,8 +1,8 @@
 {
   "name": "vueadmin",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
@@ -10,10 +10,10 @@
     "lint": "eslint --cache",
     "test": "vitest",
     "test:run": "vitest run",
-    "format": "prettier . --write",
     "lint:fix": "pnpm lint --fix",
     "node:inspect": "pnpx node-modules-inspector",
-    "prepare:hooks": "simple-git-hooks"
+    "prepare:hooks": "simple-git-hooks",
+    "lint:config-check": "npx @eslint/config-inspector"
   },
   "dependencies": {
     "@commitlint/types": "^19.8.0",
@@ -28,6 +28,7 @@
     "yup": "^1.6.1"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^4.10.1",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "@eslint/js": "^9.22.0",
@@ -36,14 +37,11 @@
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
     "eslint": "^9.22.0",
-    "eslint-plugin-vue": "^10.0.0",
     "globals": "^16.0.0",
     "happy-dom": "^17.4.4",
     "jsdom": "^26.0.0",
-    "prettier": "3.5.3",
     "simple-git-hooks": "^2.11.1",
     "typescript": "~5.8.2",
-    "typescript-eslint": "^8.26.1",
     "vite": "^6.2.2",
     "vite-plugin-vuetify": "^2.1.0",
     "vitest": "^3.0.9",

@@ -1,14 +1,15 @@
-import "@mdi/font/css/materialdesignicons.css";
-import { createApp } from "vue";
-import vuetify from "./shared/plugins/vuetify";
-import router from "./app/router";
-import App from "./app";
-import { sentryInit } from "@/shared/api/sentryInit";
-import { globalErrorHandler } from "@/shared/api/errorHandler";
-const app = createApp(App);
+import { globalErrorHandler } from '@/shared/api/errorHandler'
+import { sentryInit } from '@/shared/api/sentryInit'
+import { createApp } from 'vue'
+import App from './app'
+import router from './app/router'
+import vuetify from './shared/plugins/vuetify'
+import '@mdi/font/css/materialdesignicons.css'
 
-app.config.errorHandler = globalErrorHandler;
+const app = createApp(App)
 
-sentryInit(app, router);
-app.use(vuetify).use(router);
-app.mount("#app");
+app.config.errorHandler = globalErrorHandler
+
+sentryInit(app, router)
+app.use(vuetify).use(router)
+app.mount('#app')

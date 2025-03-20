@@ -1,1 +1,1 @@
-export * from "./IPropsDialog";
+export * from './IPropsDialog'

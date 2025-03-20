@@ -1,3 +1,3 @@
-import TaskPage from "./ui/TasksPage.vue";
+import TaskPage from './ui/TasksPage.vue'
 
-export default TaskPage;
+export default TaskPage

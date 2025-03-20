@@ -1,3 +1,3 @@
-import RecoveryPassword from "./ui/RecoveryPassword.vue";
+import RecoveryPassword from './ui/RecoveryPassword.vue'
 
-export default RecoveryPassword;
+export default RecoveryPassword

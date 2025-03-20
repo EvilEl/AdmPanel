@@ -1,112 +1,102 @@
 <script setup lang="ts">
+import { useHandleTheme, useNavigationDrawler } from '@/shared/composables'
+import { RoutesName } from '@/shared/constants/index'
 import {
-  VResponsive,
   VApp,
-  VNavigationDrawer,
-  VList,
-  VListItem,
   VAppBar,
   VBtn,
-  VMain,
   VContainer,
   VDivider,
+  VList,
   VListGroup,
-} from "vuetify/components";
-import { useHandleTheme, useNavigationDrawler } from "@/shared/composables";
-import { RoutesName } from "@/shared/constants/index";
+  VListItem,
+  VMain,
+  VNavigationDrawer,
+  VResponsive,
+} from 'vuetify/components'
 
-const { themeName, iconTheme, changeTheme } = useHandleTheme();
-const { isOpen } = useNavigationDrawler();
+const { themeName, iconTheme, changeTheme } = useHandleTheme()
+const { isOpen } = useNavigationDrawler()
 
 const authorizations = [
   {
     name: RoutesName.LOGIN,
-    title: "Вход",
+    title: 'Вход',
   },
   {
     name: RoutesName.REGISTRATION,
-    title: "Регистрация",
+    title: 'Регистрация',
   },
   {
     name: RoutesName.PASSWORD_RECOVERY,
-    title: "Восстановление пароля",
+    title: 'Восстановление пароля',
   },
-];
+]
 </script>
 
 <template>
-  <v-responsive class="border rounded">
-    <v-app :theme="themeName">
-      <v-navigation-drawer
-        :rail="isOpen"
-        permanent
-        @click="isOpen = false"
-      >
-        <v-list-item
+  <VResponsive class="border rounded">
+    <VApp :theme="themeName">
+      <VNavigationDrawer :rail="isOpen" permanent @click="isOpen = false">
+        <VListItem
           prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
           title="John Leider"
           nav
         >
           <template #append>
-            <v-btn
+            <VBtn
               icon="mdi-chevron-left"
               variant="text"
               @click.stop="isOpen = !isOpen"
             />
           </template>
-        </v-list-item>
+        </VListItem>
 
-        <v-divider />
-        <v-list
-          density="compact"
-          nav
-        >
-          <v-list-item
+        <VDivider />
+        <VList density="compact" nav>
+          <VListItem
             :to="{ name: RoutesName.HOME }"
             prepend-icon="mdi-home-city"
             title="Домик"
             value="Домашняя"
           />
-          <v-list-item
+          <VListItem
             :to="{ name: RoutesName.TASK }"
             prepend-icon="mdi-file-tree"
             title="Задачи"
             value="Таски"
           />
 
-          <v-list-group value="Авторизация">
+          <VListGroup value="Авторизация">
             <template #activator="{ props }">
-              <v-list-item
-                v-bind="props"
-                title="Авторизация"
-              />
+              <VListItem v-bind="props" title="Авторизация" />
             </template>
 
-            <v-list-item
+            <VListItem
               v-for="(item, id) of authorizations"
               :key="id"
               :to="item.name"
               :title="item.title"
             />
-          </v-list-group>
-        </v-list>
-      </v-navigation-drawer>
-      <v-app-bar title="Админ панель">
-        <v-btn
+          </VListGroup>
+        </VList>
+      </VNavigationDrawer>
+      <VAppBar title="Админ панель">
+        <VBtn
           :prepend-icon="iconTheme"
           text="Смена темы"
           slim
           @click="changeTheme"
         />
-      </v-app-bar>
+      </VAppBar>
 
-      <v-main>
-        <v-container>
+      <VMain>
+        <VContainer>
           <slot />
-        </v-container>
-      </v-main>
-    </v-app>
-  </v-responsive>
+        </VContainer>
+      </VMain>
+    </VApp>
+  </VResponsive>
 </template>
 
 <style scoped></style>

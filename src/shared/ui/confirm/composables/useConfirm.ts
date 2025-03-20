@@ -1,34 +1,34 @@
-import { createGlobalState } from "@vueuse/core";
-import { ref } from "vue";
+import { createGlobalState } from '@vueuse/core'
+import { ref } from 'vue'
 
 export const useConfirm = createGlobalState(() => {
-  let resolver: ((value: boolean | PromiseLike<boolean>) => void) | null = null;
+  let resolver: ((value: boolean | PromiseLike<boolean>) => void) | null = null
 
-  const isVisible = ref(false);
-  const title = ref("");
-  const msg = ref("");
+  const isVisible = ref(false)
+  const title = ref('')
+  const msg = ref('')
 
   function handleCancel() {
     if (resolver) {
-      resolver(false);
+      resolver(false)
     }
-    isVisible.value = false;
+    isVisible.value = false
   }
 
   function handleConfirm() {
     if (resolver) {
-      resolver(true);
+      resolver(true)
     }
-    isVisible.value = false;
+    isVisible.value = false
   }
 
   function open({ title: t, message }): Promise<boolean> {
-    title.value = t;
-    msg.value = message;
+    title.value = t
+    msg.value = message
     return new Promise<boolean>((resolve) => {
-      isVisible.value = true;
-      resolver = resolve;
-    });
+      isVisible.value = true
+      resolver = resolve
+    })
   }
 
   return {
@@ -38,5 +38,5 @@ export const useConfirm = createGlobalState(() => {
     msg,
     isVisible,
     title,
-  };
-});
+  }
+})

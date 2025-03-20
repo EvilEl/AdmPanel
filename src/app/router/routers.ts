@@ -1,27 +1,27 @@
-import { RoutesName } from "@/shared/constants";
+import { RoutesName } from '@/shared/constants'
 
 const routes = [
-  { path: "/", name: RoutesName.HOME, component: () => import("@/pages/Home") },
+  { path: '/', name: RoutesName.HOME, component: () => import('@/pages/Home') },
   {
-    path: "/task",
+    path: '/task',
     name: RoutesName.TASK,
-    component: () => import("@/pages/Task"),
+    component: () => import('@/pages/Task'),
   },
   {
-    path: "/login",
+    path: '/login',
     name: RoutesName.LOGIN,
-    component: () => import("@/pages/Login"),
+    component: () => import('@/pages/Login'),
   },
   {
-    path: "/registration",
+    path: '/registration',
     name: RoutesName.REGISTRATION,
-    component: () => import("@/pages/Registration"),
+    component: () => import('@/pages/Registration'),
   },
   {
-    path: "/passwordRecovery",
+    path: '/passwordRecovery',
     name: RoutesName.PASSWORD_RECOVERY,
-    component: () => import("@/pages/RecoveryPassword"),
+    component: () => import('@/pages/RecoveryPassword'),
   },
-];
+]
 
-export default routes;
+export default routes

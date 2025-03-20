@@ -1,3 +1,3 @@
-import TaskPayload from "./TaskPayload.vue";
+import TaskPayload from './TaskPayload.vue'
 
-export default TaskPayload;
+export default TaskPayload

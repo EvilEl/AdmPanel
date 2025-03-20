@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HomeLayout from "@/shared/ui/layouts/ui/HomeLayout";
+import HomeLayout from '@/shared/ui/layouts/ui/HomeLayout'
 </script>
 
 <template>

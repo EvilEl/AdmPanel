@@ -1,8 +1,8 @@
-import { OptionsDialogPartial } from "./IOptionsDialog";
+import type { OptionsDialogPartial } from './IOptionsDialog'
 
 interface IPropsDialog {
-  isDialog: boolean;
-  options?: OptionsDialogPartial;
+  isDialog: boolean
+  options?: OptionsDialogPartial
 }
 
-export type { IPropsDialog };
+export type { IPropsDialog }

@@ -1,4 +1,4 @@
-import { ComponentPublicInstance } from "vue";
+import type { ComponentPublicInstance } from 'vue'
 
 export function globalErrorHandler(
   err: unknown,
@@ -6,7 +6,7 @@ export function globalErrorHandler(
   info: string,
 ) {
   if (err instanceof Error) {
-    console.log("error", err.message);
+    console.log('error', err.message)
   }
-  console.log("globalErrorHandler", err, instance, info);
+  console.log('globalErrorHandler', err, instance, info)
 }

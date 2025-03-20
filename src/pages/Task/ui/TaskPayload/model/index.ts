@@ -1,1 +1,1 @@
-export * from "./useTaskPayload";
+export * from './useTaskPayload'

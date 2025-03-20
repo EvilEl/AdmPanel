@@ -1,13 +1,13 @@
-import { StatusTask } from "./StatusTask";
+import type { StatusTask } from './StatusTask'
 
-type idTask = number | string;
+type idTask = number | string
 interface ITask {
-  id: idTask;
-  title: string;
-  description: string;
-  status: keyof typeof StatusTask;
+  id: idTask
+  title: string
+  description: string
+  status: keyof typeof StatusTask
 }
 
-interface ITaskPayload extends Pick<ITask, "title" | "description"> {}
+interface ITaskPayload extends Pick<ITask, 'title' | 'description'> {}
 
-export type { ITask, ITaskPayload, idTask };
+export type { idTask, ITask, ITaskPayload }

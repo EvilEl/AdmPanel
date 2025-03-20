@@ -1,3 +1,3 @@
-import Dialog from "./ui/Dialog.vue";
+import Dialog from './ui/Dialog.vue'
 
-export default Dialog;
+export default Dialog

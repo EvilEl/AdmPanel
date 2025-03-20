@@ -1,1 +1,1 @@
-export * from "./useTaskDialog";
+export * from './useTaskDialog'

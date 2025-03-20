@@ -1,6 +1,6 @@
-import { defineConfig } from "vitest/config";
-import vue from "@vitejs/plugin-vue";
-import { fileURLToPath } from "url";
+import { fileURLToPath } from 'node:url'
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   plugins: [vue()],
@@ -8,13 +8,13 @@ export default defineConfig({
     deps: {
       inline: [/vuetify/], // Чтобы Vuetify корректно импортировался
     },
-    environment: "happy-dom",
+    environment: 'happy-dom',
     globals: true,
     alias: [
       {
-        find: "@",
-        replacement: fileURLToPath(new URL("./src", import.meta.url)),
+        find: '@',
+        replacement: fileURLToPath(new URL('./src', import.meta.url)),
       },
     ],
   },
-});
+})

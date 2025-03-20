@@ -1,3 +1,3 @@
-import TaskManager from "./TaskManager.vue";
+import TaskManager from './TaskManager.vue'
 
-export default TaskManager;
+export default TaskManager
