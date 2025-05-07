@@ -19,6 +19,7 @@ const {
   searchValue,
   removeTask,
   moveTask,
+  removeCompletedTasks,
 } = useTask()
 const { isDialog, titleModal, openDialog } = useTaskManagerDialog()
 const { isTaskDialog, openTaskDialog } = useTaskDialog()
@@ -33,6 +34,14 @@ const { isTaskDialog, openTaskDialog } = useTaskDialog()
       @click.stop="openDialog(null)"
     >
       Задача
+    </VBtn>
+    <VBtn
+      :class="style['task-manager__add']"
+      prepend-icon="mdi-minus-circle"
+      variant="text"
+      @click.stop="removeCompletedTasks"
+    >
+      Удалить выполненные
     </VBtn>
     <VTextField v-model="searchValue" label="Поиск" />
     <div :class="style['task-manager__content']">

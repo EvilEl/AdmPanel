@@ -107,6 +107,10 @@ export const useTask = createGlobalState(() => {
     }
   }
 
+  function removeCompletedTasks() {
+    tasks.value = tasks.value.filter(item => item.status !== StatusTask.completed)
+  }
+
   return {
     tasks,
     searchValue,
@@ -120,5 +124,6 @@ export const useTask = createGlobalState(() => {
     addTask,
     moveTask,
     editTask,
+    removeCompletedTasks,
   }
 })
