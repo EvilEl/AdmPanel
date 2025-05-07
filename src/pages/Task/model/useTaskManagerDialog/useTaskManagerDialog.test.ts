@@ -27,6 +27,7 @@ describe('task-manager-dialog', () => {
       id: 1,
       status: 'completed',
       title: 'title',
+      createdDate: new Date(),
     })
     expect(titleModal.value).toBe('Редактировать задачу')
   })
