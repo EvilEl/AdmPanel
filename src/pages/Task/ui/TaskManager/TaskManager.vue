@@ -4,7 +4,7 @@ import Dialog from '@/features/dialog'
 import { useTaskDialog } from '@/pages/Task/model/useTaskDialog'
 import { useTaskManagerDialog } from '@/pages/Task/model/useTaskManagerDialog'
 import draggable from 'vuedraggable'
-import { VBtn } from 'vuetify/components'
+import { VBtn, VTextField } from 'vuetify/components'
 import TaskDescription from '../TaskDescription'
 import TaskPayload from '../TaskPayload'
 import style from './TaskManager.module.css'
@@ -16,6 +16,7 @@ const {
   countInProgressTasks,
   countTask,
   selectedTask,
+  searchValue,
   removeTask,
   moveTask,
 } = useTask()
@@ -33,6 +34,7 @@ const { isTaskDialog, openTaskDialog } = useTaskDialog()
     >
       Задача
     </VBtn>
+    <VTextField v-model="searchValue" label="Поиск" />
     <div :class="style['task-manager__content']">
       <div :class="style['task-manager__draggable']">
         В процессе: {{ countInProgressTasks }}

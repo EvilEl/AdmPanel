@@ -6,8 +6,9 @@ interface ITask {
   title: string
   description: string
   status: keyof typeof StatusTask
+  createdDate: Date
 }
 
-interface ITaskPayload extends Pick<ITask, 'title' | 'description'> {}
+interface ITaskPayload extends Pick<ITask, 'title' | 'description'> { }
 
 export type { idTask, ITask, ITaskPayload }

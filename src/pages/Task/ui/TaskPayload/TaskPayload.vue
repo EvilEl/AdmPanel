@@ -16,6 +16,7 @@ const props = withDefaults(defineProps<ITaskPayloadProps>(), {
     title: '',
     description: '',
     status: 'completed',
+    createdDate: new Date(),
   }),
 })
 
