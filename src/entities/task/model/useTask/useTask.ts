@@ -18,32 +18,23 @@ export const useTask = createGlobalState(() => {
       id: 1,
       description: 'description 1',
       status: StatusTask.inProgress,
+      createdDate: new Date(),
     },
     {
       title: 'Jean',
       id: 2,
       description: 'description 2',
       status: StatusTask.inProgress,
+      createdDate: new Date(),
     },
   ])
 
   const inProgressTasks = ref<ITask[]>([])
   const completedTasks = ref<ITask[]>([])
   const selectedTask = ref<ITask | null>(null)
+  const searchValue = ref<string>('')
 
-  watch(
-    tasks,
-    () => {
-      inProgressTasks.value = tasks.value.filter(
-        task => task.status === StatusTask.inProgress,
-      )
-      completedTasks.value = tasks.value.filter(
-        task => task.status === StatusTask.completed,
-      )
-    },
-    { immediate: true, deep: true },
-  )
-
+  const foundedTasks = computed(() => tasks.value.filter(task => searchValue.value ? task.title.toLowerCase().includes(searchValue.value.toLowerCase()) : task))
   const countTask = computed<number>(() => tasks.value.length)
   const countCompletedTasks = computed<number>(
     () => completedTasks.value.length,
@@ -52,11 +43,25 @@ export const useTask = createGlobalState(() => {
     () => inProgressTasks.value.length,
   )
 
+  watch(
+    [tasks, searchValue],
+    () => {
+      inProgressTasks.value = foundedTasks.value.filter(
+        task => task.status === StatusTask.inProgress,
+      )
+      completedTasks.value = foundedTasks.value.filter(
+        task => task.status === StatusTask.completed,
+      )
+    },
+    { immediate: true, deep: true },
+  )
+
   function addTask(data: ITaskPayload): void {
     const newTask = {
       ...data,
       id: Math.random() * 100 + 1000,
       status: StatusTask.inProgress,
+      createdDate: new Date(),
     }
     tasks.value.push(newTask)
   }
@@ -102,8 +107,13 @@ export const useTask = createGlobalState(() => {
     }
   }
 
+  function removeCompletedTasks() {
+    tasks.value = tasks.value.filter(item => item.status !== StatusTask.completed)
+  }
+
   return {
     tasks,
+    searchValue,
     inProgressTasks,
     completedTasks,
     countCompletedTasks,
@@ -114,5 +124,6 @@ export const useTask = createGlobalState(() => {
     addTask,
     moveTask,
     editTask,
+    removeCompletedTasks,
   }
 })
