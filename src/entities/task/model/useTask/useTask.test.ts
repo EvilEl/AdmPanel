@@ -11,6 +11,7 @@ describe('useTask', () => {
     description: 'test',
     id: 1,
     status: StatusTask.inProgress,
+    createdDate: new Date(),
   }
 
   beforeEach(() => {
